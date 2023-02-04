@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var racine_instances = preload("res://scenes/racine.tscn")
 
+
 enum directions {
 	NORD,
 	EST,
@@ -70,6 +71,7 @@ func nouvelle_pousse():
 		nouvelle_racine.orientation_parent = self.orientation_self
 		nouvelle_racine.coordonees_parent = self.coordonees
 		nouvelle_racine.orientation_self = get_direction()
+		liste_enfants.push_back(nouvelle_racine)
 		get_parent().add_child(nouvelle_racine)
 		joue_anim_neutre()
 	type_racine = type.NEUTRE
@@ -121,6 +123,12 @@ func set_directions_possibles():
 	#		print(str(self), directions_possibles)
 	return directions_possibles
 
+func mort_recursive():
+	if not(liste_enfants.is_empty()) :
+		for i in liste_enfants :
+			if i != null :
+				i.mort_recursive()
+	queue_free()
 
 
 func _on_timer_for_raycasts_timeout():

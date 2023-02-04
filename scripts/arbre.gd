@@ -30,3 +30,7 @@ func init_tree():
 #	var nouvelle_racine = racine.instantiate()
 #	var positions_de_la_prochaine_racine = $Serie.get_child(get_child_count() - 2).set_directions_possibles()
 #	nouvelle_racine.position = $Serie.get_child(get_child_count() - 2).position + set_racine_position(positions_de_la_prochaine_racine)
+
+
+func _on_joueur_racine_coupee(pRacine):
+	pRacine.mort_recursive()
