@@ -5,7 +5,7 @@ extends Camera2D
 @export var duree_transision = 1
 
 func _ready():
-	suivre_joueur(hauteur_joueur)
+	suivre_joueur(get_parent().get_node("Joueur").position.x)
 
 func _process(delta):
 	pass
