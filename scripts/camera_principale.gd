@@ -1,13 +1,12 @@
 extends Camera2D
 
-@export var hauteur_joueur = -5000
+#variable à changer avec un signal du joueur et sa position
+@export var hauteur_joueur = 0
 @export var duree_transision = 1
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	suivre_joueur(hauteur_joueur)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
