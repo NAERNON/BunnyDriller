@@ -14,15 +14,15 @@ func _process(delta):
 
 
 func set_directions_possibles():
-	if est_pousse:
-		if $RayCastBas.is_colliding():
-			directions_possibles.erase("bas")
-		if $RayCastGauche.is_colliding():
-			directions_possibles.erase("gauche")
-		if $RayCastDroite.is_colliding():
-			directions_possibles.erase("droite")
-		#		print(str(self), directions_possibles)
-		return directions_possibles
+#	if est_pousse:
+	if $RayCastBas.is_colliding():
+		directions_possibles.erase("bas")
+	if $RayCastGauche.is_colliding():
+		directions_possibles.erase("gauche")
+	if $RayCastDroite.is_colliding():
+		directions_possibles.erase("droite")
+	#		print(str(self), directions_possibles)
+	return directions_possibles
 
 
 
