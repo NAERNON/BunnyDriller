@@ -1,18 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2x4mtpq6lkpu"]
+[gd_scene load_steps=6 format=3 uid="uid://b2x4mtpq6lkpu"]
 
 [ext_resource type="PackedScene" uid="uid://cdka245uypttb" path="res://scenes/joueur.tscn" id="1_ktibf"]
 [ext_resource type="PackedScene" uid="uid://bkmd6yp71qgxf" path="res://scenes/obstacle.tscn" id="2_554wv"]
+[ext_resource type="PackedScene" uid="uid://5xohne7g4ol1" path="res://scenes/arbre.tscn" id="2_kk0bm"]
 [ext_resource type="PackedScene" uid="uid://cg6hqijmuvkr6" path="res://scenes/camera_principale.tscn" id="3_8m0q4"]
 [ext_resource type="PackedScene" uid="uid://duhbv21sc36u5" path="res://scenes/gestion_terrain.tscn" id="3_hhfom"]
 
 [node name="TestDamien" type="Node2D"]
 
+[node name="GestionTerrain" parent="." instance=ExtResource("3_hhfom")]
+visible = false
+
+[node name="Arbre" parent="." instance=ExtResource("2_kk0bm")]
+
 [node name="Joueur" parent="." instance=ExtResource("1_ktibf")]
-position = Vector2(84, 60)
+position = Vector2(72, 48)
 
 [node name="Obstacle" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(132, 60)
-
-[node name="GestionTerrain" parent="." instance=ExtResource("3_hhfom")]
+position = Vector2(120, 48)
 
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_8m0q4")]
+
+[connection signal="player_moved" from="Joueur" to="CameraPrincipale" method="_on_joueur_player_moved"]
