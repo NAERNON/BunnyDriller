@@ -38,31 +38,31 @@ func deplacement():
 			$Sprite.play("Action")
 			var deplacement = Vector2.ZERO
 			if action == "H" :
+				$Sprite.global_rotation_degrees = 0 
+				$Sprite.flip_v = true 
 				if not($RayCastHaut.is_colliding()) or $RayCastHaut.get_collider().get_parent().is_in_group("Racine"): 
 					deplacement.y = - Global.pixelHauteur 
-					$Sprite.global_rotation_degrees = 0 
-					$Sprite.flip_v = true 
 					if $RayCastHaut.is_colliding() and $RayCastHaut.get_collider().get_parent().is_in_group("Racine"):
 						emit_signal("racine_coupee",$RayCastHaut.get_collider().get_parent())
 			if action == "B" :
+				$Sprite.global_rotation_degrees = 0
+				$Sprite.flip_v = false 
 				if not($RayCastBas.is_colliding()) or $RayCastBas.get_collider().get_parent().is_in_group("Racine"): 
 					deplacement.y =  Global.pixelHauteur 
-					$Sprite.global_rotation_degrees = 0
-					$Sprite.flip_v = false 
 					if $RayCastBas.is_colliding() and $RayCastBas.get_collider().get_parent().is_in_group("Racine"):
 						emit_signal("racine_coupee",$RayCastBas.get_collider().get_parent())
 			if action == "G" :
+				$Sprite.global_rotation_degrees = 90 
+				$Sprite.flip_v = false 
 				if not($RayCastGauche.is_colliding()) or $RayCastGauche.get_collider().get_parent().is_in_group("Racine"): 
 					deplacement.x = - Global.pixelLargeur 
-					$Sprite.global_rotation_degrees = 90 
-					$Sprite.flip_v = false 
 					if $RayCastGauche.is_colliding() and $RayCastGauche.get_collider().get_parent().is_in_group("Racine"):
 						emit_signal("racine_coupee",$RayCastGauche.get_collider().get_parent())
 			if action == "D" :
+					$Sprite.global_rotation_degrees = -90 
+					$Sprite.flip_v = false
 					if not($RayCastDroite.is_colliding()) or $RayCastDroite.get_collider().get_parent().is_in_group("Racine"): 
 						deplacement.x =  Global.pixelLargeur 
-						$Sprite.global_rotation_degrees = -90 
-						$Sprite.flip_v = false
 						if $RayCastDroite.is_colliding() and $RayCastDroite.get_collider().get_parent().is_in_group("Racine"):
 							emit_signal("racine_coupee",$RayCastDroite.get_collider().get_parent())
 			self.global_position += deplacement
