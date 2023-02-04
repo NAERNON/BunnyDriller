@@ -6,6 +6,10 @@
 [node name="Arbre" type="Node2D"]
 script = ExtResource("1_1pwtc")
 
-[node name="Racine" parent="." instance=ExtResource("1_xtdo3")]
+[node name="Serie" type="Node2D" parent="."]
+
+[node name="Racine" parent="Serie" instance=ExtResource("1_xtdo3")]
 position = Vector2(12, 12)
 metadata/test = false
+
+[node name="Serie2" type="Node2D" parent="."]
