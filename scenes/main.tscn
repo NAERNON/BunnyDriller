@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://tsoqs8ym3jne"]
+[gd_scene load_steps=3 format=3 uid="uid://tsoqs8ym3jne"]
 
 [ext_resource type="PackedScene" uid="uid://cdka245uypttb" path="res://scenes/joueur.tscn" id="1_fvc3c"]
+[ext_resource type="PackedScene" uid="uid://bkmd6yp71qgxf" path="res://scenes/obstacle.tscn" id="2_e7ys2"]
 
 [node name="JE PUSH" type="Node2D"]
 
 [node name="Joueur" parent="." instance=ExtResource("1_fvc3c")]
-position = Vector2(252, 151)
+position = Vector2(228, 132)
+
+[node name="Obstacle" parent="." instance=ExtResource("2_e7ys2")]
+position = Vector2(300, 132)

@@ -12,12 +12,20 @@ func _process(delta):
 
 func _input(event): 
 	var deplacement = Vector2.ZERO
-	if event.is_action_pressed("ui_haut"):
+	if event.is_action_pressed("ui_haut") and not($RayCastHaut.is_colliding()) :
 		deplacement.y = - Global.pixelHeigth 
-	if event.is_action_pressed("ui_bas"):
+		$Sprite.global_rotation_degrees = 90 
+		$Sprite.flip_h = false 
+	if event.is_action_pressed("ui_bas") and not($RayCastBas.is_colliding()):
 		deplacement.y =  Global.pixelHeigth 
-	if event.is_action_pressed("ui_gauche"):
+		$Sprite.global_rotation_degrees = -90 
+		$Sprite.flip_h = false 
+	if event.is_action_pressed("ui_gauche") and not($RayCastGauche.is_colliding()):
 		deplacement.x = - Global.pixelHeigth 
-	if event.is_action_pressed("ui_droite"):
+		$Sprite.global_rotation_degrees = 0 
+		$Sprite.flip_h = false 
+	if event.is_action_pressed("ui_droite") and not($RayCastDroite.is_colliding()):
 		deplacement.x =  Global.pixelHeigth 
+		$Sprite.global_rotation_degrees = 0 
+		$Sprite.flip_h = true 
 	self.global_position += deplacement
