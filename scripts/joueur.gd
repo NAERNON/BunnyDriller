@@ -3,6 +3,8 @@ extends Node2D
 signal fin_du_tour_joueur
 signal player_moved(position_y)
 
+signal racine_coupee(pRacine)
+
 var moving = false
 var input_buffer = []
 # Called when the node enters the scene tree for the first time.
@@ -16,17 +18,16 @@ func _process(_delta):
 
 func _input(event): 
 	#Récupération de l'input dans un buffer
-	
-	if event.is_action_pressed("ui_haut") :
-		input_buffer.push_back("H")
-	elif event.is_action_pressed("ui_bas"):
-		input_buffer.push_back("B")
-	elif event.is_action_pressed("ui_gauche") :
-		input_buffer.push_back("G")
-	elif event.is_action_pressed("ui_droite"):
-		input_buffer.push_back("D")
+	if input_buffer.size() < 3 :
+		if event.is_action_pressed("ui_haut") :
+			input_buffer.push_back("H")
+		elif event.is_action_pressed("ui_bas"):
+			input_buffer.push_back("B")
+		elif event.is_action_pressed("ui_gauche") :
+			input_buffer.push_back("G")
+		elif event.is_action_pressed("ui_droite"):
+			input_buffer.push_back("D")
 		
-	print(input_buffer)
 
 
 func deplacement(): 
@@ -36,22 +37,34 @@ func deplacement():
 			$Sprite.stop()
 			$Sprite.play("Action")
 			var deplacement = Vector2.ZERO
-			if action == "H" and not($RayCastHaut.is_colliding()) :
-				deplacement.y = - Global.pixelHauteur 
-				$Sprite.global_rotation_degrees = 0 
-				$Sprite.flip_v = true 
-			if action == "B"  and not($RayCastBas.is_colliding()):
-				deplacement.y =  Global.pixelHauteur 
-				$Sprite.global_rotation_degrees = 0
-				$Sprite.flip_v = false 
-			if action == "G" and not($RayCastGauche.is_colliding()):
-				deplacement.x = - Global.pixelLargeur 
-				$Sprite.global_rotation_degrees = 90 
-				$Sprite.flip_v = false 
-			if action == "D"  and not($RayCastDroite.is_colliding()):
-				deplacement.x =  Global.pixelLargeur 
-				$Sprite.global_rotation_degrees = -90 
-				$Sprite.flip_v = false 
+			if action == "H" :
+				if not($RayCastHaut.is_colliding()) or $RayCastHaut.get_collider().get_parent().is_in_group("Racine"): 
+					deplacement.y = - Global.pixelHauteur 
+					$Sprite.global_rotation_degrees = 0 
+					$Sprite.flip_v = true 
+					if $RayCastHaut.is_colliding() and $RayCastHaut.get_collider().get_parent().is_in_group("Racine"):
+						emit_signal("racine_coupee",$RayCastHaut.get_collider().get_parent())
+			if action == "B" :
+				if not($RayCastBas.is_colliding()) or $RayCastBas.get_collider().get_parent().is_in_group("Racine"): 
+					deplacement.y =  Global.pixelHauteur 
+					$Sprite.global_rotation_degrees = 0
+					$Sprite.flip_v = false 
+					if $RayCastBas.is_colliding() and $RayCastBas.get_collider().get_parent().is_in_group("Racine"):
+						emit_signal("racine_coupee",$RayCastBas.get_collider().get_parent())
+			if action == "G" :
+				if not($RayCastGauche.is_colliding()) or $RayCastGauche.get_collider().get_parent().is_in_group("Racine"): 
+					deplacement.x = - Global.pixelLargeur 
+					$Sprite.global_rotation_degrees = 90 
+					$Sprite.flip_v = false 
+					if $RayCastGauche.is_colliding() and $RayCastGauche.get_collider().get_parent().is_in_group("Racine"):
+						emit_signal("racine_coupee",$RayCastGauche.get_collider().get_parent())
+			if action == "D" :
+					if not($RayCastDroite.is_colliding()) or $RayCastDroite.get_collider().get_parent().is_in_group("Racine"): 
+						deplacement.x =  Global.pixelLargeur 
+						$Sprite.global_rotation_degrees = -90 
+						$Sprite.flip_v = false
+						if $RayCastDroite.is_colliding() and $RayCastDroite.get_collider().get_parent().is_in_group("Racine"):
+							emit_signal("racine_coupee",$RayCastDroite.get_collider().get_parent())
 			self.global_position += deplacement
 			emit_signal("player_moved",self.global_position.y)
 			moving = true

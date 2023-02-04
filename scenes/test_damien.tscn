@@ -22,3 +22,4 @@ position = Vector2(120, 48)
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_8m0q4")]
 
 [connection signal="player_moved" from="Joueur" to="CameraPrincipale" method="_on_joueur_player_moved"]
+[connection signal="racine_coupee" from="Joueur" to="Arbre" method="_on_joueur_racine_coupee"]
