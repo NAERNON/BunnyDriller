@@ -7,6 +7,7 @@ func _ready():
 	pass
 
 
+
 func _process(delta):
 	pass
 
@@ -22,25 +23,9 @@ func set_racine_position(directions_possible):
 
 func spawn_racine():
 	var nouvelle_racine = racine.instantiate()
-
-
-#	print(get_child(get_child_count() - 1).est_pousse)
-#	print(nouvelle_racine.est_pousse)
-	
-	var positions_de_la_prochaine_racine = get_child(get_child_count() - 1).set_directions_possibles()
-	
-#	nouvelle_racine.position = get_child(get_child_count() - 1).position + set_racine_position(get_child(get_child_count() - 2).set_directions_possibles())
-	nouvelle_racine.position = get_child(get_child_count() - 1).position + set_racine_position(positions_de_la_prochaine_racine)
-	add_child(nouvelle_racine)
-#
-#	for r in get_child_count() - 2:
-#		get_child(r).est_pousse = false
-
-	
-
-#		r.est_pousse = false
-	
-
-	
-	
-#	print(get_child(get_child_count() - 1))
+	var positions_de_la_prochaine_racine = $Serie.get_child(get_child_count() - 2).set_directions_possibles()
+	nouvelle_racine.position = $Serie.get_child(get_child_count() - 2).position + set_racine_position(positions_de_la_prochaine_racine)
+	if randi_range(1,3) == 1 :
+		$Serie2.add_child(nouvelle_racine)
+	else:
+		$Serie.add_child(nouvelle_racine)
