@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdka245uypttb"]
+[gd_scene load_steps=22 format=3 uid="uid://cdka245uypttb"]
 
 [ext_resource type="Script" path="res://scripts/joueur.gd" id="1_o86ep"]
 [ext_resource type="Texture2D" uid="uid://ciwe5c5ijveuu" path="res://sprites/rabbit/rabbit_iddle.png" id="2_qidgi"]
@@ -134,6 +134,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2pjp"]
+size = Vector2(24, 24)
+
 [node name="Joueur" type="Node2D"]
 script = ExtResource("1_o86ep")
 
@@ -163,6 +166,11 @@ collide_with_bodies = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_n2pjp")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

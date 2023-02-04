@@ -44,7 +44,6 @@ func joue_anim_pousse() :
 		directions.EST :
 			$Sprite.play("horizontal_right_end")
 
-
 func joue_anim_neutre() :
 	if orientation_self == orientation_parent :
 		match orientation_self :
@@ -63,7 +62,6 @@ func joue_anim_neutre() :
 			$Sprite.play("corner_left_down")
 		elif orientation_parent == directions.EST and orientation_self == directions.SUD :
 			$Sprite.play("corner_right_down")
-			
 
 func nouvelle_pousse():
 	if type_racine == type.POUSSE :
@@ -72,7 +70,6 @@ func nouvelle_pousse():
 		nouvelle_racine.orientation_parent = self.orientation_self
 		nouvelle_racine.coordonees_parent = self.coordonees
 		nouvelle_racine.orientation_self = get_direction()
-		print("Orientation parent :"+str(nouvelle_racine.orientation_parent)+"Orientation self :"+str(nouvelle_racine.orientation_self))
 		get_parent().add_child(nouvelle_racine)
 		joue_anim_neutre()
 	type_racine = type.NEUTRE
@@ -96,32 +93,17 @@ func get_direction() :
 	var ray_down = $RayCastBas.is_colliding()
 	var return_value = directions.SUD
 	var is_valid_return = false
+	set_directions_possibles()
 	
-	
-	while not(is_valid_return) :
-		return_value = get_rand_direction()
-		match return_value :
-			directions.SUD :
-				if not(ray_down) :
-					is_valid_return = true
-			directions.OUEST : 
-				if not(ray_gauche) :
-					is_valid_return = true
-			directions.EST : 
-				if not(ray_down) :
-					is_valid_return = true
-	
-	return return_value
+	var direction_choisie = directions_possibles[randi_range(0,directions_possibles.size()-1)]
+	match direction_choisie :
+		"bas":
+			return directions.SUD 
+		"gauche":
+			return directions.OUEST 
+		"droite":
+			return directions.EST 
 
-func get_rand_direction() :
-	match randi_range(1,3):
-		1 :
-			return directions.SUD
-		2 : 
-			return directions.OUEST
-		3 : 
-			return directions.EST
-	return directions.SUD
 	
 	
 func set_directions_possibles():
@@ -131,6 +113,10 @@ func set_directions_possibles():
 	if $RayCastGauche.is_colliding():
 		directions_possibles.erase("gauche")
 	if $RayCastDroite.is_colliding():
+		directions_possibles.erase("droite")
+	if orientation_self == directions.EST:
+		directions_possibles.erase("gauche")
+	if orientation_self == directions.OUEST:
 		directions_possibles.erase("droite")
 	#		print(str(self), directions_possibles)
 	return directions_possibles
