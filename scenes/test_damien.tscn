@@ -9,6 +9,7 @@
 [node name="TestDamien" type="Node2D"]
 
 [node name="GestionTerrain" parent="." instance=ExtResource("3_hhfom")]
+visible = false
 
 [node name="Arbre" parent="." instance=ExtResource("2_kk0bm")]
 

@@ -15,7 +15,7 @@ enum type {
 }
 
 var orientation_parent = directions.SUD
-var orientation_enfant = directions.OUEST
+var orientation_self = directions.OUEST
 
 var liste_enfants = []
 var coordonees_parent = Vector2.ZERO
@@ -28,20 +28,102 @@ var est_pousse = true
 
 func _ready():
 	self.global_position = Vector2(coordonees.x * Global.pixelHauteur ,coordonees.y * Global.pixelLargeur)
-
+	$DureeVie.start(Global.dureePousses)
+	joue_anim_pousse()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
 
+func joue_anim_pousse() :
+	match orientation_self :
+		directions.SUD :
+			$Sprite.play("vertical_end")
+		directions.OUEST :
+			$Sprite.play("horizontal_left_end")
+		directions.EST :
+			$Sprite.play("horizontal_right_end")
+
+
+func joue_anim_neutre() :
+	if orientation_self == orientation_parent :
+		match orientation_self :
+			directions.SUD :
+				$Sprite.play("vertical")
+			directions.OUEST :
+				$Sprite.play("horizontal_left")
+			directions.EST :
+				$Sprite.play("horizontal_right")
+	else : 
+		if orientation_parent == directions.SUD and orientation_self == directions.OUEST:
+			$Sprite.play("corner_down_left")
+		elif orientation_parent == directions.SUD and orientation_self == directions.EST :
+			$Sprite.play("corner_down_right")
+		elif orientation_parent == directions.OUEST and orientation_self == directions.SUD:
+			$Sprite.play("corner_left_down")
+		elif orientation_parent == directions.EST and orientation_self == directions.SUD :
+			$Sprite.play("corner_right_down")
+			
+
 func nouvelle_pousse():
 	if type_racine == type.POUSSE :
 		var nouvelle_racine = racine_instances.instantiate()
-		nouvelle_racine.coordonees = Vector2(self.coordonees.x + 1 , self.coordonees.y + 1) 
+		nouvelle_racine.coordonees = self.coordonees + get_direction_vecteur(self.orientation_self)
+		nouvelle_racine.orientation_parent = self.orientation_self
+		nouvelle_racine.coordonees_parent = self.coordonees
+		nouvelle_racine.orientation_self = get_direction()
+		print("Orientation parent :"+str(nouvelle_racine.orientation_parent)+"Orientation self :"+str(nouvelle_racine.orientation_self))
 		get_parent().add_child(nouvelle_racine)
+		joue_anim_neutre()
 	type_racine = type.NEUTRE
 
+func get_direction_vecteur(pOrientation): 
+	match pOrientation :
+		directions.SUD :
+			return Vector2.DOWN
+		directions.NORD :
+			return Vector2.DOWN
+		directions.OUEST :
+			return Vector2.LEFT
+		directions.EST :
+			return Vector2.RIGHT
+	return Vector2.ZERO
+	
 
+func get_direction() : 
+	var ray_gauche = $RayCastGauche.is_colliding()
+	var ray_droite = $RayCastDroite.is_colliding()
+	var ray_down = $RayCastBas.is_colliding()
+	var return_value = directions.SUD
+	var is_valid_return = false
+	
+	
+	while not(is_valid_return) :
+		return_value = get_rand_direction()
+		match return_value :
+			directions.SUD :
+				if not(ray_down) :
+					is_valid_return = true
+			directions.OUEST : 
+				if not(ray_gauche) :
+					is_valid_return = true
+			directions.EST : 
+				if not(ray_down) :
+					is_valid_return = true
+	
+	return return_value
+
+func get_rand_direction() :
+	match randi_range(1,3):
+		1 :
+			return directions.SUD
+		2 : 
+			return directions.OUEST
+		3 : 
+			return directions.EST
+	return directions.SUD
+	
+	
 func set_directions_possibles():
 #	if est_pousse:s
 	if $RayCastBas.is_colliding():

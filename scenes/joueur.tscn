@@ -1,14 +1,145 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdka245uypttb"]
+[gd_scene load_steps=21 format=3 uid="uid://cdka245uypttb"]
 
-[ext_resource type="Texture2D" uid="uid://co2vqslo8gdhw" path="res://icon.svg" id="1_dpgj7"]
 [ext_resource type="Script" path="res://scripts/joueur.gd" id="1_o86ep"]
+[ext_resource type="Texture2D" uid="uid://ciwe5c5ijveuu" path="res://sprites/rabbit/rabbit_iddle.png" id="2_qidgi"]
+[ext_resource type="Texture2D" uid="uid://xsatcswd72b1" path="res://sprites/rabbit/rabbit_action.png" id="2_s4bk1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5vnq"]
+atlas = ExtResource("2_s4bk1")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjwrv"]
+atlas = ExtResource("2_s4bk1")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ieuo"]
+atlas = ExtResource("2_s4bk1")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqqdu"]
+atlas = ExtResource("2_s4bk1")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5x3f"]
+atlas = ExtResource("2_s4bk1")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np0wj"]
+atlas = ExtResource("2_s4bk1")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15gp2"]
+atlas = ExtResource("2_s4bk1")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g2xv"]
+atlas = ExtResource("2_s4bk1")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yag3a"]
+atlas = ExtResource("2_qidgi")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j42h"]
+atlas = ExtResource("2_qidgi")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwqe5"]
+atlas = ExtResource("2_qidgi")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emsie"]
+atlas = ExtResource("2_qidgi")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ogga"]
+atlas = ExtResource("2_qidgi")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkbh2"]
+atlas = ExtResource("2_qidgi")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m68i1"]
+atlas = ExtResource("2_qidgi")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmobg"]
+atlas = ExtResource("2_qidgi")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vh0pg"]
+animations = [{
+"frames": [{
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_s5vnq")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_pjwrv")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_3ieuo")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_wqqdu")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_d5x3f")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_np0wj")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_15gp2")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_2g2xv")
+}],
+"loop": false,
+"name": &"Action",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yag3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j42h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwqe5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emsie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ogga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkbh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m68i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmobg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Joueur" type="Node2D"]
 script = ExtResource("1_o86ep")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.189, 0.189)
-texture = ExtResource("1_dpgj7")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vh0pg")
+animation = &"Action"
 
 [node name="RayCastHaut" type="RayCast2D" parent="."]
 target_position = Vector2(0, -24)
@@ -33,4 +164,5 @@ collide_with_bodies = false
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

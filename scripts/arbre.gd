@@ -3,7 +3,7 @@ extends Node2D
 @onready var racine = preload("res://scenes/racine.tscn")
 
 func _ready():
-	pass
+	init_tree()
 
 
 
