@@ -1,8 +1,10 @@
 extends Node2D
 
+signal fin_du_tour_joueur
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -27,3 +29,8 @@ func _input(event):
 		$Sprite.global_rotation_degrees = 0 
 		$Sprite.flip_h = true 
 	self.global_position += deplacement
+
+
+func _on_timer_timeout():
+	emit_signal("fin_du_tour_joueur")
+	$Timer.start()
