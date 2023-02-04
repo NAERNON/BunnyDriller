@@ -24,17 +24,17 @@ func spawn_racine():
 	var nouvelle_racine = racine.instantiate()
 
 
-	print(get_child(get_child_count() - 1).est_pousse)
-	print(nouvelle_racine.est_pousse)
+#	print(get_child(get_child_count() - 1).est_pousse)
+#	print(nouvelle_racine.est_pousse)
 	
-
+	var positions_de_la_prochaine_racine = get_child(get_child_count() - 1).set_directions_possibles()
 	
-	nouvelle_racine.position = get_child(get_child_count() - 1).position + set_racine_position(get_child(get_child_count() - 2).set_directions_possibles())
-
+#	nouvelle_racine.position = get_child(get_child_count() - 1).position + set_racine_position(get_child(get_child_count() - 2).set_directions_possibles())
+	nouvelle_racine.position = get_child(get_child_count() - 1).position + set_racine_position(positions_de_la_prochaine_racine)
 	add_child(nouvelle_racine)
-	
-	for r in get_child_count() - 2:
-		get_child(r).est_pousse = false
+#
+#	for r in get_child_count() - 2:
+#		get_child(r).est_pousse = false
 
 	
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://r3l6ob7drshg" path="res://scenes/joueur.tscn" id="1_fvc3c"]
 [ext_resource type="PackedScene" uid="uid://cljj6p8agetxd" path="res://scenes/obstacle.tscn" id="2_e7ys2"]
-[ext_resource type="PackedScene" uid="uid://bd47q6pe4yygc" path="res://scenes/arbre.tscn" id="3_n4qvr"]
+[ext_resource type="PackedScene" uid="uid://5xohne7g4ol1" path="res://scenes/arbre.tscn" id="3_n4qvr"]
 
 [node name="JE PUSH" type="Node2D"]
 
