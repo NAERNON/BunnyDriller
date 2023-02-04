@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://tsoqs8ym3jne"]
+[gd_scene load_steps=4 format=3 uid="uid://tsoqs8ym3jne"]
 
-[ext_resource type="PackedScene" uid="uid://cdka245uypttb" path="res://scenes/joueur.tscn" id="1_fvc3c"]
-[ext_resource type="PackedScene" uid="uid://bkmd6yp71qgxf" path="res://scenes/obstacle.tscn" id="2_e7ys2"]
+[ext_resource type="PackedScene" uid="uid://r3l6ob7drshg" path="res://scenes/joueur.tscn" id="1_fvc3c"]
+[ext_resource type="PackedScene" uid="uid://cljj6p8agetxd" path="res://scenes/obstacle.tscn" id="2_e7ys2"]
+[ext_resource type="PackedScene" uid="uid://bd47q6pe4yygc" path="res://scenes/arbre.tscn" id="3_n4qvr"]
 
 [node name="JE PUSH" type="Node2D"]
 
 [node name="Joueur" parent="." instance=ExtResource("1_fvc3c")]
+visible = false
 position = Vector2(228, 132)
 
 [node name="Obstacle" parent="." instance=ExtResource("2_e7ys2")]
+visible = false
 position = Vector2(300, 132)
+
+[node name="Arbre" parent="." instance=ExtResource("3_n4qvr")]
+position = Vector2(288, 0)
+
+[connection signal="fin_du_tour_joueur" from="Joueur" to="Arbre" method="spawn_racine"]

@@ -1,7 +1,7 @@
 extends Node
 
-var pixelWIdth = 24 
-var pixelHeigth = 24
+var pixelLargeur = 24 
+var pixelHauteur = 24
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

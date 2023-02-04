@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdka245uypttb"]
+[gd_scene load_steps=3 format=3 uid="uid://r3l6ob7drshg"]
 
 [ext_resource type="Texture2D" uid="uid://co2vqslo8gdhw" path="res://icon.svg" id="1_dpgj7"]
 [ext_resource type="Script" path="res://scripts/joueur.gd" id="1_o86ep"]
@@ -29,3 +29,8 @@ collide_with_bodies = false
 target_position = Vector2(24, 0)
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
