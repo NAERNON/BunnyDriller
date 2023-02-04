@@ -1,6 +1,7 @@
 extends Node2D
 
 signal fin_du_tour_joueur
+signal player_moved(position_y)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +30,7 @@ func _input(event):
 		$Sprite.global_rotation_degrees = 0 
 		$Sprite.flip_h = true 
 	self.global_position += deplacement
+	emit_signal("player_moved",self.global_position.y)
 
 
 func _on_timer_timeout():

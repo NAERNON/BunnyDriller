@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var racine = preload("res://scenes/racine.tscn")
 
-
 func _ready():
 	pass
 
@@ -20,12 +19,14 @@ func set_racine_position(directions_possible):
 	if directions_possible[prochaine_direction] == "bas":
 		return Vector2(0, 24)
 
+func init_tree():
+	var nouvelle_pousse = racine.instantiate()
+	add_child(nouvelle_pousse)
+	
+	
 
-func spawn_racine():
-	var nouvelle_racine = racine.instantiate()
-	var positions_de_la_prochaine_racine = $Serie.get_child(get_child_count() - 2).set_directions_possibles()
-	nouvelle_racine.position = $Serie.get_child(get_child_count() - 2).position + set_racine_position(positions_de_la_prochaine_racine)
-	if randi_range(1,3) == 1 :
-		$Serie2.add_child(nouvelle_racine)
-	else:
-		$Serie.add_child(nouvelle_racine)
+
+#func spawn_racine():
+#	var nouvelle_racine = racine.instantiate()
+#	var positions_de_la_prochaine_racine = $Serie.get_child(get_child_count() - 2).set_directions_possibles()
+#	nouvelle_racine.position = $Serie.get_child(get_child_count() - 2).position + set_racine_position(positions_de_la_prochaine_racine)
