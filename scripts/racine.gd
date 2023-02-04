@@ -15,6 +15,9 @@ enum type {
 	NEUTRE
 }
 
+# Plus chance division est haute moins il y a de chance d'un nouveau croisement
+var chance_division = 50
+
 var orientation_parent = directions.SUD
 var orientation_self = directions.OUEST
 
@@ -73,6 +76,17 @@ func nouvelle_pousse():
 		nouvelle_racine.orientation_self = get_direction()
 		liste_enfants.push_back(nouvelle_racine)
 		get_parent().add_child(nouvelle_racine)
+		var chance = randi_range(0,chance_division)
+		if chance == 0 :
+			
+			var doublon_racine = racine_instances.instantiate()
+			doublon_racine.coordonees = self.coordonees + get_direction_vecteur(self.orientation_self)
+			doublon_racine.orientation_parent = self.orientation_self
+			doublon_racine.coordonees_parent = self.coordonees
+			remove_direction(nouvelle_racine.orientation_self)
+			doublon_racine.orientation_self = get_direction()
+			liste_enfants.push_back(doublon_racine)
+			get_parent().add_child(doublon_racine)
 		joue_anim_neutre()
 	type_racine = type.NEUTRE
 
@@ -106,7 +120,14 @@ func get_direction() :
 		"droite":
 			return directions.EST 
 
-	
+func remove_direction(pDirection):
+	match pDirection :
+		directions.SUD :
+			directions_possibles.erase("bas")
+		directions.EST :
+			directions_possibles.erase("droite")
+		directions.OUEST :
+			directions_possibles.erase("gauche")
 	
 func set_directions_possibles():
 #	if est_pousse:s
@@ -138,3 +159,4 @@ func _on_timer_for_raycasts_timeout():
 
 func _on_duree_vie_timeout():
 	nouvelle_pousse()
+
