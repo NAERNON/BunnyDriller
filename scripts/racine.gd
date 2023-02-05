@@ -19,7 +19,10 @@ enum type {
 
 
 var orientation_parent = directions.SUD
-var orientation_self = directions.OUEST
+var orientation_self = directions.SUD
+var orientation_enfant = directions.SUD
+
+var parent = null
 
 var liste_enfants = []
 var coordonees_parent = Vector2.ZERO
@@ -31,9 +34,7 @@ var directions_possibles = ["bas", "gauche", "droite"]
 var est_pousse = true
 
 func _ready():
-	self.global_position = Vector2(coordonees.x * Global.pixelHauteur ,coordonees.y * Global.pixelLargeur)
-	$DureeVie.start(Global.dureePousses)
-	joue_anim_pousse()
+	$Area2D/CollisionShape2D.disabled = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -49,8 +50,8 @@ func joue_anim_pousse() :
 			$Sprite.play("horizontal_right_end")
 
 func joue_anim_neutre() :
-	if orientation_self == orientation_parent :
-		match orientation_self :
+	if orientation_enfant == orientation_self :
+		match orientation_enfant :
 			directions.SUD :
 				$Sprite.play("vertical")
 			directions.OUEST :
@@ -58,36 +59,36 @@ func joue_anim_neutre() :
 			directions.EST :
 				$Sprite.play("horizontal_right")
 	else : 
-		if orientation_parent == directions.SUD and orientation_self == directions.OUEST:
+		if orientation_self == directions.SUD and orientation_enfant == directions.OUEST:
 			$Sprite.play("corner_down_left")
-		elif orientation_parent == directions.SUD and orientation_self == directions.EST :
+		elif orientation_self == directions.SUD and orientation_enfant == directions.EST :
 			$Sprite.play("corner_down_right")
-		elif orientation_parent == directions.OUEST and orientation_self == directions.SUD:
+		elif orientation_self == directions.OUEST and orientation_enfant == directions.SUD:
 			$Sprite.play("corner_left_down")
-		elif orientation_parent == directions.EST and orientation_self == directions.SUD :
+		elif orientation_self == directions.EST and orientation_enfant == directions.SUD :
 			$Sprite.play("corner_right_down")
 
 func nouvelle_pousse():
 	if type_racine == type.POUSSE :
 		var nouvelle_racine = racine_instances.instantiate()
-		nouvelle_racine.coordonees = self.coordonees + get_direction_vecteur(self.orientation_self)
 		nouvelle_racine.orientation_parent = self.orientation_self
 		nouvelle_racine.coordonees_parent = self.coordonees
-		nouvelle_racine.orientation_self = get_direction()
+		nouvelle_racine.parent = self
 		liste_enfants.push_back(nouvelle_racine)
-		get_parent().add_child(nouvelle_racine)
-		var chance = randi_range(0,get_parent().chance_division)
-		if chance == 0 :
-			
-			var doublon_racine = racine_instances.instantiate()
-			doublon_racine.coordonees = self.coordonees + get_direction_vecteur(self.orientation_self)
-			doublon_racine.orientation_parent = self.orientation_self
-			doublon_racine.coordonees_parent = self.coordonees
-			remove_direction(nouvelle_racine.orientation_self)
-			doublon_racine.orientation_self = get_direction()
-			liste_enfants.push_back(doublon_racine)
-			get_parent().add_child(doublon_racine)
-		joue_anim_neutre()
+		if not(directions_possibles.is_empty()) :
+			get_parent().add_child(nouvelle_racine)
+			var chance = randi_range(0,get_parent().chance_division)
+			if chance == 0 :
+				var doublon_racine = racine_instances.instantiate()
+				doublon_racine.orientation_parent = self.orientation_self
+				doublon_racine.coordonees_parent = self.coordonees
+				#remove_direction(nouvelle_racine.orientation_self)
+				#doublon_racine.orientation_self = get_direction()
+				#doublon_racine.coordonees = self.coordonees + get_direction_vecteur(self.orientation_self)
+				nouvelle_racine.parent = self
+				liste_enfants.push_back(doublon_racine)
+				get_parent().add_child(doublon_racine)
+	
 	type_racine = type.NEUTRE
 
 func get_direction_vecteur(pOrientation): 
@@ -108,17 +109,19 @@ func get_direction() :
 	var ray_droite = $RayCastDroite.is_colliding()
 	var ray_down = $RayCastBas.is_colliding()
 	var return_value = directions.SUD
-	set_directions_possibles()
-	
-	if directions_possibles.size() > 0:
-		var direction_choisie = directions_possibles[randi_range(0,directions_possibles.size()-1)]
-		match direction_choisie :
-			"bas":
-				return directions.SUD 
-			"gauche":
-				return directions.OUEST 
-			"droite":
-				return directions.EST 
+	if parent != null :
+		parent.set_directions_possibles()
+		if parent.directions_possibles.size() > 0:
+			var direction_choisie = parent.directions_possibles[randi_range(0,parent.directions_possibles.size()-1)]
+			match direction_choisie :
+				"bas":
+					return directions.SUD 
+				"gauche":
+					return directions.OUEST 
+				"droite":
+					return directions.EST 
+	return directions.SUD
+
 
 func remove_direction(pDirection):
 	match pDirection :
@@ -132,11 +135,23 @@ func remove_direction(pDirection):
 func set_directions_possibles():
 #	if est_pousse:s
 	if $RayCastBas.is_colliding():
-		directions_possibles.erase("bas")
+		if $RayCastBas.get_collider().get_parent().is_in_group("Eau") :
+			directions_possibles = ["bas"]
+			get_parent().contact_eau()
+		else :
+			directions_possibles.erase("bas")
 	if $RayCastGauche.is_colliding():
-		directions_possibles.erase("gauche")
+		if $RayCastGauche.get_collider().get_parent().is_in_group("Eau") :
+			directions_possibles = ["gauche"]
+			get_parent().contact_eau()
+		else :
+			directions_possibles.erase("gauche")
 	if $RayCastDroite.is_colliding():
-		directions_possibles.erase("droite")
+		if $RayCastDroite.get_collider().get_parent().is_in_group("Eau") :
+			directions_possibles = ["droite"]
+			get_parent().contact_eau()
+		else :
+			directions_possibles.erase("droite")
 	if orientation_self == directions.EST:
 		directions_possibles.erase("gauche")
 	if orientation_self == directions.OUEST:
@@ -160,3 +175,16 @@ func _on_timer_for_raycasts_timeout():
 func _on_duree_vie_timeout():
 	nouvelle_pousse()
 
+
+
+func _on_delay_raycast_timeout():
+	orientation_self = get_direction()
+	if( parent != null):
+		parent.orientation_enfant = orientation_self
+		parent.joue_anim_neutre()
+	#print("Nouvelle branche "+str(orientation_parent)+" - "+ str(orientation_enfant))
+	coordonees = coordonees_parent + get_direction_vecteur(orientation_self)
+	self.global_position = Vector2(coordonees.x * Global.pixelHauteur ,coordonees.y * Global.pixelLargeur)
+	$DureeVie.start(Global.dureePousses)
+	$Area2D/CollisionShape2D.disabled = false
+	joue_anim_pousse()
