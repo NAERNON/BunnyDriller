@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://bnp3j30gco8hx"]
+[gd_scene load_steps=113 format=3 uid="uid://bnp3j30gco8hx"]
 
 [ext_resource type="Script" path="res://scripts/racine.gd" id="1_jqgsl"]
 [ext_resource type="Texture2D" uid="uid://ersbn1gihnmx" path="res://sprites/roots/vertical_end.png" id="2_r7p64"]
@@ -729,13 +729,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hkg4d")
 }],
-"loop": false,
+"loop": true,
 "name": &"scar_horizontal_left",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_em7l4")
+"texture": SubResource("AtlasTexture_sgcrw")
 }],
 "loop": true,
 "name": &"scar_horizontal_right",
@@ -743,39 +743,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a1qgw")
+"texture": SubResource("AtlasTexture_ifdhh")
 }],
 "loop": true,
 "name": &"scar_vertical",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jw6ny")
+"texture": SubResource("AtlasTexture_kwc82")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vhi4t")
+"texture": SubResource("AtlasTexture_6mvj7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_anrmw")
+"texture": SubResource("AtlasTexture_tqtrc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_701fu")
+"texture": SubResource("AtlasTexture_vqkya")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u3nhg")
+"texture": SubResource("AtlasTexture_xpukd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5wt0w")
+"texture": SubResource("AtlasTexture_s576y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_km4cy")
+"texture": SubResource("AtlasTexture_g7oxf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hek7t")
+"texture": SubResource("AtlasTexture_ws4gq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kv4p5")
+"texture": SubResource("AtlasTexture_bs4gq")
+>>>>>>> bebc177 (toto)
 }],
 "loop": false,
 "name": &"vertical",
@@ -859,3 +860,4 @@ autostart = true
 
 [connection signal="timeout" from="DureeVie" to="." method="_on_duree_vie_timeout"]
 [connection signal="timeout" from="DelayRaycast" to="." method="_on_delay_raycast_timeout"]
+
