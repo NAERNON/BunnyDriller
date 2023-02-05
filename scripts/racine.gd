@@ -89,7 +89,8 @@ func nouvelle_pousse():
 				nouvelle_racine.parent = self
 				liste_enfants.push_back(doublon_racine)
 				get_parent().add_child(doublon_racine)
-	Global.dureePousses -= 0.001
+	if Global.dureePousses > 0:
+		Global.dureePousses -= 0.001
 	type_racine = type.NEUTRE
 
 func get_direction_vecteur(pOrientation): 

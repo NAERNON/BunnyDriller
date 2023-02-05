@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var racine = preload("res://scenes/racine.tscn")
 
-signal game_over()
 
 var chance_division = 10
 var spawn_speed = 5
@@ -49,11 +48,13 @@ func _on_joueur_racine_coupee(pRacine):
 
 func contact_eau(): 
 	self.chance_division = 10
-	print('EAU')
 
 func contact_toxic(): 
-	emit_signal("game_over")
+	game_over()
+
+func game_over() : 
+	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func _on_delay_timeout():
 	if get_count_pousses() < 1: 
-		emit_signal("game_over")
+		game_over()
