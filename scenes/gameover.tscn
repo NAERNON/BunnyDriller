@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://gierj128geby"]
+[gd_scene load_steps=37 format=3 uid="uid://bocqim7ak4wkw"]
 
 [ext_resource type="Script" path="res://scripts/gameover.gd" id="1_umase"]
 [ext_resource type="Texture2D" uid="uid://bsigor84hreui" path="res://sprites/gameover/game_over.png" id="1_uuwta"]
@@ -247,3 +247,5 @@ texture_normal = ExtResource("3_151n0")
 texture_pressed = ExtResource("4_tply0")
 texture_hover = ExtResource("5_f1iti")
 texture_disabled = ExtResource("6_8ly6e")
+
+[connection signal="button_up" from="PlayButton" to="." method="_on_play_button_button_up"]

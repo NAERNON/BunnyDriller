@@ -2,9 +2,9 @@ extends Node2D
 
 @onready var racine = preload("res://scenes/racine.tscn")
 
-signal game_over()
 
-var chance_division = 50
+var chance_division = 10
+var spawn_speed = 5
 
 func _ready():
 	init_tree()
@@ -41,16 +41,20 @@ func get_count_pousses():
 	return count
 
 func _on_joueur_racine_coupee(pRacine):
+	if pRacine.parent != null :
+		pRacine.parent.child_died()
 	pRacine.mort_recursive()
 	$Delay.start(2)
 
 func contact_eau(): 
-	print('EAU')
+	self.chance_division = 10
 
-func contact_toxique(): 
-	print('TOXIQUE')
-	emit_signal("game_over")
+func contact_toxic(): 
+	game_over()
+
+func game_over() : 
+	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func _on_delay_timeout():
 	if get_count_pousses() < 1: 
-		emit_signal("game_over")
+		game_over()
