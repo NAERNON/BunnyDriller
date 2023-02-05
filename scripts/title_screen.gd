@@ -20,7 +20,9 @@ func _on_play_button_pressed():
 	$light_front.stop()
 	$PlayButton.disabled = true
 	start_character_delay = true
+	get_tree().change_scene_to_file("res://scenes/test_damien.tscn")
 
 
 func _on_soundscape_fadeout_finished(anim_name):
 	$Soundscape.stop()
+

@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2x4mtpq6lkpu"]
+[gd_scene load_steps=5 format=3 uid="uid://b2x4mtpq6lkpu"]
 
 [ext_resource type="PackedScene" uid="uid://cdka245uypttb" path="res://scenes/joueur.tscn" id="1_ktibf"]
-[ext_resource type="PackedScene" uid="uid://bkmd6yp71qgxf" path="res://scenes/obstacle.tscn" id="2_554wv"]
 [ext_resource type="PackedScene" uid="uid://5xohne7g4ol1" path="res://scenes/arbre.tscn" id="2_kk0bm"]
 [ext_resource type="PackedScene" uid="uid://cg6hqijmuvkr6" path="res://scenes/camera_principale.tscn" id="3_8m0q4"]
 [ext_resource type="PackedScene" uid="uid://duhbv21sc36u5" path="res://scenes/gestion_terrain.tscn" id="3_hhfom"]
@@ -11,33 +10,12 @@
 [node name="GestionTerrain" parent="." instance=ExtResource("3_hhfom")]
 
 [node name="Arbre" parent="." instance=ExtResource("2_kk0bm")]
+position = Vector2(0, 144)
 
 [node name="Joueur" parent="." instance=ExtResource("1_ktibf")]
-position = Vector2(72, 48)
-
-[node name="Obstacle" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(36, -96)
+position = Vector2(96, 192)
 
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_8m0q4")]
-
-[node name="Obstacle6" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(72, 0)
-
-[node name="Obstacle5" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(48, 48)
-
-[node name="Obstacle2" parent="." groups=["Eau"] instance=ExtResource("2_554wv")]
-modulate = Color(0.733333, 0.980392, 0, 1)
-position = Vector2(0, 48)
-
-[node name="Obstacle7" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(-72, 24)
-
-[node name="Obstacle3" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(-48, 48)
-
-[node name="Obstacle4" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(24, -24)
 
 [connection signal="player_moved" from="Joueur" to="CameraPrincipale" method="_on_joueur_player_moved"]
 [connection signal="racine_coupee" from="Joueur" to="Arbre" method="_on_joueur_racine_coupee"]
