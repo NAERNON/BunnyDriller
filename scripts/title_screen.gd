@@ -15,7 +15,12 @@ func _process(_delta):
 			$character.play()
 
 func _on_play_button_pressed():
+	$AnimationPlayer.play("soundscape_fadeout")
 	$light_back.stop()
 	$light_front.stop()
 	$PlayButton.disabled = true
 	start_character_delay = true
+
+
+func _on_soundscape_fadeout_finished(anim_name):
+	$Soundscape.stop()

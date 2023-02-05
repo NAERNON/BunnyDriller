@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ln5gq8fuiw"]
+[gd_scene load_steps=49 format=3 uid="uid://ln5gq8fuiw"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_56lvo"]
 [ext_resource type="Texture2D" uid="uid://cfl0teoyh5k33" path="res://sprites/title_screen/scene_back.png" id="2_f7jsk"]
@@ -256,6 +256,43 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="Animation" id="Animation_7omgo"]
+resource_name = "soundscape_fadeout"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soundscape:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_10uuy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soundscape:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fqwmf"]
+_data = {
+"RESET": SubResource("Animation_10uuy"),
+"soundscape_fadeout": SubResource("Animation_7omgo")
+}
+
 [node name="title_screen" type="Node2D"]
 texture_filter = 1
 position = Vector2(240, 135)
@@ -280,18 +317,24 @@ modulate = Color(1, 0.894118, 0.992157, 1)
 position = Vector2(2.08165e-12, 2.08165e-12)
 sprite_frames = SubResource("SpriteFrames_k1dtw")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Soundscape" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_gsa7l")
 autoplay = true
 
 [node name="PlayButton" type="TextureButton" parent="."]
-offset_left = -51.0
-offset_top = 105.0
-offset_right = 27.0
-offset_bottom = 125.0
+offset_left = -226.0
+offset_top = 107.0
+offset_right = -148.0
+offset_bottom = 127.0
 texture_normal = ExtResource("8_vsacu")
 texture_pressed = ExtResource("9_nd76s")
 texture_hover = ExtResource("10_14qjv")
 texture_disabled = ExtResource("11_g6qt8")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fqwmf")
+}
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_soundscape_fadeout_finished"]
