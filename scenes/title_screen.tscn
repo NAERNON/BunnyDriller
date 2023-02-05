@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://ln5gq8fuiw"]
+[gd_scene load_steps=50 format=3 uid="uid://ln5gq8fuiw"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_56lvo"]
 [ext_resource type="Texture2D" uid="uid://cfl0teoyh5k33" path="res://sprites/title_screen/scene_back.png" id="2_f7jsk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dx50pa7lgqvy0" path="res://sprites/title_screen/character.png" id="4_vdh1k"]
 [ext_resource type="Texture2D" uid="uid://bhq8bwtnhr520" path="res://sprites/title_screen/scene.png" id="5_1dnq1"]
 [ext_resource type="Texture2D" uid="uid://0hjvc2dgti0t" path="res://sprites/title_screen/light_front.png" id="6_nqkcc"]
+[ext_resource type="AudioStream" uid="uid://clncia3l0iyei" path="res://sound/sound_effects/title_screen_start.mp3" id="7_5q3rh"]
 [ext_resource type="AudioStream" uid="uid://ccrsqd5key7n1" path="res://sound/sound_effects/forest_night_01.wav" id="7_gsa7l"]
 [ext_resource type="Texture2D" uid="uid://c2fqtn112aawq" path="res://sprites/buttons/play_normal.png" id="8_vsacu"]
 [ext_resource type="Texture2D" uid="uid://bkqmkemh2o5e" path="res://sprites/buttons/play_selected.png" id="9_nd76s"]
@@ -316,6 +317,9 @@ texture = ExtResource("5_1dnq1")
 modulate = Color(1, 0.894118, 0.992157, 1)
 position = Vector2(2.08165e-12, 2.08165e-12)
 sprite_frames = SubResource("SpriteFrames_k1dtw")
+
+[node name="StartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5q3rh")
 
 [node name="Soundscape" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_gsa7l")

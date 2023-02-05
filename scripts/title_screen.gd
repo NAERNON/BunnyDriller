@@ -19,6 +19,7 @@ func _on_play_button_pressed():
 	$light_back.stop()
 	$light_front.stop()
 	$PlayButton.disabled = true
+	$StartSound.play()
 	start_character_delay = true
 	get_tree().change_scene_to_file("res://scenes/test_damien.tscn")
 
