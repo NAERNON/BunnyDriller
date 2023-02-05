@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://8nkb6mtody8a"
+=======
+uid="uid://bqclc6lqwn586"
+>>>>>>> bebc177 (toto)
 path="res://.godot/imported/convex_bottom_right.png-1e989855b3ab1c13b6dc4038f9300601.ctex"
 metadata={
 "vram_texture": false

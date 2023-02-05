@@ -254,4 +254,6 @@ stream = ExtResource("8_x46cw")
 volume_db = -4.0
 autoplay = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_button_up"]

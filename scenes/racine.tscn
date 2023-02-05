@@ -729,6 +729,55 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hkg4d")
 }],
+"loop": true,
+"name": &"scar_horizontal_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgcrw")
+}],
+"loop": true,
+"name": &"scar_horizontal_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifdhh")
+}],
+"loop": true,
+"name": &"scar_vertical",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwc82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mvj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqtrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqkya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpukd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s576y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7oxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws4gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bs4gq")
+>>>>>>> bebc177 (toto)
+}],
 "loop": false,
 "name": &"vertical",
 "speed": 10.0
