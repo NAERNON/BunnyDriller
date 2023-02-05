@@ -110,6 +110,7 @@ func get_direction() :
 	var return_value = directions.SUD
 	set_directions_possibles()
 	
+
 	if directions_possibles.size() > 0:
 		var direction_choisie = directions_possibles[randi_range(0,directions_possibles.size()-1)]
 		match direction_choisie :
@@ -119,6 +120,7 @@ func get_direction() :
 				return directions.OUEST 
 			"droite":
 				return directions.EST 
+
 
 func remove_direction(pDirection):
 	match pDirection :
