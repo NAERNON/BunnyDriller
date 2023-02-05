@@ -16,9 +16,9 @@ func _ready():
 	ajouter_intro()
 	load_sn() 
 	for i in 10 : 
-		var aleatoire = randi_range(1,4)
+		var aleatoire = randi_range(1,nb_sn)
 		while aleatoire == dernier_sn :
-			aleatoire = randi_range(1,4)
+			aleatoire = randi_range(1,nb_sn)
 		ajouter_sn(aleatoire)
 		
 
@@ -30,7 +30,7 @@ func load_sn():
 
 func ajouter_sn(pIdentifiant):
 	var new_sn = liste_sn[pIdentifiant-1].instantiate()
-	new_sn.global_position = Vector2(0,compteur_sn * hauteur_sn)
+	new_sn.global_position = Vector2(-240,compteur_sn * hauteur_sn)
 	add_child(new_sn)
 	compteur_sn += 1 
 	dernier_sn = pIdentifiant
@@ -38,7 +38,7 @@ func ajouter_sn(pIdentifiant):
 
 func ajouter_intro():
 	var instance_sn = intro.instantiate()
-	instance_sn.global_position = Vector2(0,compteur_sn * hauteur_sn)
+	instance_sn.global_position = Vector2(0,compteur_sn * hauteur_sn + 135)
 	add_child(instance_sn)
 	compteur_sn += 1 
 
