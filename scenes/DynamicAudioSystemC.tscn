@@ -1,0 +1,146 @@
+[gd_scene load_steps=27 format=3 uid="uid://deyp4nyrs87p6"]
+
+[ext_resource type="Script" path="res://codes/DynamicAudioSystemC.cs" id="1_mk1lf"]
+[ext_resource type="AudioStream" uid="uid://co3q0qovx1jc3" path="res://wav/BongoHigh_85.wav" id="2_wuaqd"]
+[ext_resource type="AudioStream" uid="uid://w7yn2mrsq5w6" path="res://wav/BongoLow_80.wav" id="3_k40d0"]
+[ext_resource type="AudioStream" uid="uid://bgth75tfaoabq" path="res://wav/Claves_100.wav" id="5_gwvne"]
+[ext_resource type="AudioStream" uid="uid://dc23j6e00r4kj" path="res://wav/Timbales.wav" id="6_bqkdq"]
+[ext_resource type="AudioStream" uid="uid://crd6h20l7d6o1" path="res://wav/Maracas2.wav" id="6_ibyh4"]
+[ext_resource type="AudioStream" uid="uid://b8vhaog5g75fs" path="res://wav/Tambourine_75.wav" id="7_ab5ny"]
+[ext_resource type="AudioStream" uid="uid://bpjl8ssxvd05g" path="res://wav/Maracas.wav" id="8_3xwxj"]
+[ext_resource type="AudioStream" uid="uid://cbvj3t2gc4nnq" path="res://wav/Cowbell_50.wav" id="9_gfgls"]
+[ext_resource type="AudioStream" uid="uid://dvu2x638xf7q8" path="res://wav/WoodBlockHigh_80.wav" id="11_mn5xc"]
+[ext_resource type="AudioStream" uid="uid://cyxe1i5rarar4" path="res://wav/WoodBlockLow_10.wav" id="12_bm1sr"]
+[ext_resource type="AudioStream" uid="uid://dux5w2die7hgi" path="res://wav/CongaCloseSlap.wav" id="16_sjh7j"]
+[ext_resource type="AudioStream" uid="uid://hy40gd6rk3m2" path="res://wav/CongaHighFloatingHand.wav" id="17_jjvkj"]
+[ext_resource type="AudioStream" uid="uid://cxuo4qdvb17x3" path="res://wav/CongaLowTipTonesOffCenter.wav" id="18_i2yd6"]
+[ext_resource type="AudioStream" uid="uid://cwoau53g51i2y" path="res://wav/CongaOpenSlap.wav" id="19_h45jw"]
+[ext_resource type="AudioStream" uid="uid://br1bl3onbq6xa" path="res://wav/Kick_100.wav" id="19_tnlc1"]
+[ext_resource type="AudioStream" uid="uid://ci5en7ejm3jgi" path="res://wav/HitHatOpen_100.wav" id="20_hj5dg"]
+[ext_resource type="AudioStream" uid="uid://bcslrkxd44atc" path="res://wav/HitHatFootClose_100.wav" id="21_sro3h"]
+[ext_resource type="AudioStream" uid="uid://bwgdhty3kaooo" path="res://wav/HiTom.wav" id="22_7na44"]
+[ext_resource type="AudioStream" uid="uid://dxn86c2qy60n3" path="res://wav/MidTom.wav" id="22_60fgv"]
+[ext_resource type="AudioStream" uid="uid://bq0u5sf4jy3ei" path="res://wav/Claps_90.wav" id="22_apjmx"]
+[ext_resource type="AudioStream" uid="uid://duxkcwjsm6ix6" path="res://wav/SnareCenter_100.wav" id="22_cuwpc"]
+[ext_resource type="AudioStream" uid="uid://cltgyn43k5yem" path="res://wav/Claves_50.wav" id="22_qg4lv"]
+[ext_resource type="AudioStream" uid="uid://cdoa8afggdtsu" path="res://wav/SnareRimshot_100.wav" id="23_jh6cd"]
+[ext_resource type="AudioStream" uid="uid://bd7c3yedvvfor" path="res://wav/Claps_100.wav" id="23_qckqh"]
+[ext_resource type="AudioStream" uid="uid://rlm58d8nbg53" path="res://wav/LowTom.wav" id="23_tmlsd"]
+
+[node name="DynamicAudioSystem" type="Node"]
+script = ExtResource("1_mk1lf")
+minimalBPM = 93.0
+maximalBPM = 110.0
+maximalSwing = 0.5
+
+[node name="Claves" type="Node" parent="."]
+
+[node name="High" type="AudioStreamPlayer" parent="Claves"]
+stream = ExtResource("5_gwvne")
+volume_db = 7.0
+
+[node name="Low" type="AudioStreamPlayer" parent="Claves"]
+stream = ExtResource("22_qg4lv")
+
+[node name="Cowbell" type="Node" parent="."]
+
+[node name="Cowbell" type="AudioStreamPlayer" parent="Cowbell"]
+stream = ExtResource("9_gfgls")
+volume_db = -5.0
+
+[node name="Maracas" type="Node" parent="."]
+
+[node name="Maracas" type="AudioStreamPlayer" parent="Maracas"]
+stream = ExtResource("8_3xwxj")
+
+[node name="Maracas2" type="AudioStreamPlayer" parent="Maracas"]
+stream = ExtResource("6_ibyh4")
+volume_db = -5.0
+
+[node name="Tambourine" type="Node" parent="."]
+
+[node name="Tambourine" type="AudioStreamPlayer" parent="Tambourine"]
+stream = ExtResource("7_ab5ny")
+
+[node name="Timbales" type="Node" parent="."]
+
+[node name="Timbales" type="AudioStreamPlayer" parent="Timbales"]
+stream = ExtResource("6_bqkdq")
+
+[node name="Bongo" type="Node" parent="."]
+
+[node name="High" type="AudioStreamPlayer" parent="Bongo"]
+stream = ExtResource("2_wuaqd")
+bus = &"Bongo"
+
+[node name="Low" type="AudioStreamPlayer" parent="Bongo"]
+stream = ExtResource("3_k40d0")
+bus = &"Bongo"
+
+[node name="WoodBlockHigh" type="AudioStreamPlayer" parent="Bongo"]
+stream = ExtResource("11_mn5xc")
+bus = &"Bongo"
+
+[node name="WoodBlockLow" type="AudioStreamPlayer" parent="Bongo"]
+stream = ExtResource("12_bm1sr")
+bus = &"Bongo"
+
+[node name="Conga" type="Node" parent="."]
+
+[node name="CloseSlap" type="AudioStreamPlayer" parent="Conga"]
+stream = ExtResource("16_sjh7j")
+
+[node name="HighFloatingHand" type="AudioStreamPlayer" parent="Conga"]
+stream = ExtResource("17_jjvkj")
+
+[node name="LowTipTonesOffCenter" type="AudioStreamPlayer" parent="Conga"]
+stream = ExtResource("18_i2yd6")
+
+[node name="OpenSlap" type="AudioStreamPlayer" parent="Conga"]
+stream = ExtResource("19_h45jw")
+
+[node name="Batterie" type="Node" parent="."]
+
+[node name="Kick" type="AudioStreamPlayer" parent="Batterie"]
+stream = ExtResource("19_tnlc1")
+
+[node name="HitHatOpen" type="AudioStreamPlayer" parent="Batterie"]
+stream = ExtResource("20_hj5dg")
+
+[node name="HitHatFootClose" type="AudioStreamPlayer" parent="Batterie"]
+stream = ExtResource("21_sro3h")
+
+[node name="SnareCenter" type="AudioStreamPlayer" parent="Batterie"]
+stream = ExtResource("22_cuwpc")
+
+[node name="SnareRimshot" type="AudioStreamPlayer" parent="Batterie"]
+stream = ExtResource("23_jh6cd")
+
+[node name="HiTom" type="AudioStreamPlayer" parent="Batterie"]
+stream = ExtResource("22_7na44")
+
+[node name="MidTom" type="AudioStreamPlayer" parent="Batterie"]
+stream = ExtResource("22_60fgv")
+
+[node name="LowTom" type="AudioStreamPlayer" parent="Batterie"]
+stream = ExtResource("23_tmlsd")
+
+[node name="Claps" type="Node" parent="."]
+
+[node name="Claps1" type="AudioStreamPlayer" parent="Claps"]
+stream = ExtResource("22_apjmx")
+volume_db = 10.0
+
+[node name="Claps2" type="AudioStreamPlayer" parent="Claps"]
+stream = ExtResource("23_qckqh")
+volume_db = 10.0
+
+[node name="TimerSwing" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="TimerBPM" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TimerSwing" to="." method="OnTimerSwingTimeout"]
+[connection signal="timeout" from="TimerBPM" to="." method="OnTimerBPMTimeout"]

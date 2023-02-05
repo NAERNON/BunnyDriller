@@ -1,0 +1,1 @@
+var randomNumberGenerator = RandomNumberGenerator.new();
