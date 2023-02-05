@@ -4,7 +4,8 @@ extends Node2D
 
 signal game_over()
 
-var chance_division = 50
+var chance_division = 10
+var spawn_speed = 5
 
 func _ready():
 	init_tree()
@@ -41,14 +42,16 @@ func get_count_pousses():
 	return count
 
 func _on_joueur_racine_coupee(pRacine):
+	if pRacine.parent != null :
+		pRacine.parent.child_died()
 	pRacine.mort_recursive()
 	$Delay.start(2)
 
 func contact_eau(): 
+	self.chance_division = 10
 	print('EAU')
 
-func contact_toxique(): 
-	print('TOXIQUE')
+func contact_toxic(): 
 	emit_signal("game_over")
 
 func _on_delay_timeout():

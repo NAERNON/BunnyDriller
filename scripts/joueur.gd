@@ -18,7 +18,7 @@ func _process(_delta):
 
 func _input(event): 
 	#Récupération de l'input dans un buffer
-	if input_buffer.size() < 3 :
+	if input_buffer.size() < 2 :
 		if event.is_action_pressed("ui_haut") :
 			input_buffer.push_back("H")
 		elif event.is_action_pressed("ui_bas"):
