@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxv8jpo6ok0ul"]
+
+[ext_resource type="PackedScene" uid="uid://5xohne7g4ol1" path="res://scenes/arbre.tscn" id="1_7p4jk"]
+[ext_resource type="PackedScene" uid="uid://cdka245uypttb" path="res://scenes/joueur.tscn" id="2_007lu"]
+[ext_resource type="PackedScene" uid="uid://cg6hqijmuvkr6" path="res://scenes/camera_principale.tscn" id="3_6q5ov"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Arbre" parent="." instance=ExtResource("1_7p4jk")]
+
+[node name="Joueur" parent="." instance=ExtResource("2_007lu")]
+position = Vector2(48, 48)
+
+[node name="CameraPrincipale" parent="." instance=ExtResource("3_6q5ov")]
+
+[connection signal="player_moved" from="Joueur" to="CameraPrincipale" method="_on_joueur_player_moved"]
+[connection signal="racine_coupee" from="Joueur" to="Arbre" method="_on_joueur_racine_coupee"]

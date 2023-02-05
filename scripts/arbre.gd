@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var racine = preload("res://scenes/racine.tscn")
 
+signal game_over()
+
 var chance_division = 50
 
 func _ready():
@@ -42,8 +44,13 @@ func _on_joueur_racine_coupee(pRacine):
 	pRacine.mort_recursive()
 	$Delay.start(2)
 
+func contact_eau(): 
+	print('EAU')
 
+func contact_toxique(): 
+	print('TOXIQUE')
+	emit_signal("game_over")
 
 func _on_delay_timeout():
 	if get_count_pousses() < 1: 
-		print("fin de jeu")
+		emit_signal("game_over")
