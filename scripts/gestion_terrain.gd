@@ -2,17 +2,18 @@ extends Node2D
 # sn = sous_niveau
 @export var hauteur_sn = 180
 @export var largeur_sn = 480
-var sn_test 
+
+@onready var intro = preload("res://scenes/intro.tscn")
+
 var liste_sn = []
 var dernier_sn = 0 
 var nb_sn = 3
 var compteur_sn=0
-#@onready var sn = preload()
-#@export var prochain_sn : Vector2 = Vector2.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ajouter_intro()
 	load_sn() 
 	for i in 10 : 
 		var aleatoire = randi_range(1,3)
@@ -34,6 +35,13 @@ func ajouter_sn(pIdentifiant):
 	compteur_sn += 1 
 	dernier_sn = pIdentifiant
 	
+
+func ajouter_intro():
+	var instance_sn = intro.instantiate()
+	instance_sn.global_position = Vector2(0,compteur_sn * hauteur_sn)
+	add_child(instance_sn)
+	compteur_sn += 1 
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
