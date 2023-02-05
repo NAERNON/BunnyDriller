@@ -16,7 +16,7 @@ enum type {
 }
 
 # Plus chance division est haute moins il y a de chance d'un nouveau croisement
-var chance_division = 50
+
 
 var orientation_parent = directions.SUD
 var orientation_self = directions.OUEST
@@ -76,7 +76,7 @@ func nouvelle_pousse():
 		nouvelle_racine.orientation_self = get_direction()
 		liste_enfants.push_back(nouvelle_racine)
 		get_parent().add_child(nouvelle_racine)
-		var chance = randi_range(0,chance_division)
+		var chance = randi_range(0,get_parent().chance_division)
 		if chance == 0 :
 			
 			var doublon_racine = racine_instances.instantiate()
