@@ -184,7 +184,7 @@ func _on_delay_raycast_timeout():
 		parent.joue_anim_neutre()
 	#print("Nouvelle branche "+str(orientation_parent)+" - "+ str(orientation_enfant))
 	coordonees = coordonees_parent + get_direction_vecteur(orientation_self)
-	self.global_position = Vector2(coordonees.x * Global.pixelHauteur ,coordonees.y * Global.pixelLargeur)
+	self.global_position = Vector2(coordonees.x * Global.pixelHauteur + get_parent().global_position.x,coordonees.y * Global.pixelLargeur + get_parent().global_position.y)
 	$DureeVie.start(Global.dureePousses)
 	$Area2D/CollisionShape2D.disabled = false
 	joue_anim_pousse()
