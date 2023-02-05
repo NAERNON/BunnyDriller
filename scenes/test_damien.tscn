@@ -15,6 +15,12 @@ position = Vector2(0, 144)
 [node name="Joueur" parent="." instance=ExtResource("1_ktibf")]
 position = Vector2(96, 192)
 
+[node name="Obstacle" parent="." instance=ExtResource("2_554wv")]
+position = Vector2(0, 25)
+
+[node name="Obstacle2" parent="." instance=ExtResource("2_554wv")]
+position = Vector2(189, 145)
+
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_8m0q4")]
 
 [connection signal="player_moved" from="Joueur" to="CameraPrincipale" method="_on_joueur_player_moved"]

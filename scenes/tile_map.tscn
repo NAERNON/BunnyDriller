@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu8rxhc74d8mi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ocp3"]
+
+[sub_resource type="TileSet" id="TileSet_sllpb"]
+sources/0 = SubResource("TileSetAtlasSource_3ocp3")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_sllpb")
+format = 2
