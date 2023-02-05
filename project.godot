@@ -21,8 +21,10 @@ Global="*res://scripts/global.gd"
 
 [display]
 
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/mode=2
 window/stretch/mode="viewport"
-window/stretch/scale=2.0
 
 [dotnet]
 

@@ -16,7 +16,10 @@
 position = Vector2(72, 48)
 
 [node name="Obstacle" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(120, 48)
+position = Vector2(0, 25)
+
+[node name="Obstacle2" parent="." instance=ExtResource("2_554wv")]
+position = Vector2(189, 145)
 
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_8m0q4")]
 
