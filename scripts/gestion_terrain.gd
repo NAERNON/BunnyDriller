@@ -15,7 +15,9 @@ var compteur_sn=0
 func _ready():
 	ajouter_intro()
 	load_sn() 
-	for i in 10 : 
+	ajouter_sn(1)
+	ajouter_sn(2)
+	for i in 30 : 
 		var aleatoire = randi_range(1,nb_sn)
 		while aleatoire == dernier_sn :
 			aleatoire = randi_range(1,nb_sn)

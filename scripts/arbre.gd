@@ -7,6 +7,7 @@ var chance_division = 10
 var spawn_speed = 5
 
 func _ready():
+	get_parent().get_node("CameraPrincipale").enabled = true
 	init_tree()
 
 
@@ -53,6 +54,7 @@ func contact_toxic():
 	game_over()
 
 func game_over() : 
+	get_parent().get_node("CameraPrincipale").enabled = false
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func _on_delay_timeout():

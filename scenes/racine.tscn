@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://bnp3j30gco8hx"]
+[gd_scene load_steps=119 format=3 uid="uid://bnp3j30gco8hx"]
 
 [ext_resource type="Script" path="res://scripts/racine.gd" id="1_jqgsl"]
 [ext_resource type="Texture2D" uid="uid://ersbn1gihnmx" path="res://sprites/roots/vertical_end.png" id="2_r7p64"]
@@ -729,13 +729,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hkg4d")
 }],
-"loop": true,
+"loop": false,
 "name": &"scar_horizontal_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sgcrw")
+"texture": SubResource("AtlasTexture_em7l4")
 }],
 "loop": true,
 "name": &"scar_horizontal_right",
@@ -743,40 +743,39 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ifdhh")
+"texture": SubResource("AtlasTexture_a1qgw")
 }],
 "loop": true,
 "name": &"scar_vertical",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kwc82")
+"texture": SubResource("AtlasTexture_jw6ny")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6mvj7")
+"texture": SubResource("AtlasTexture_vhi4t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tqtrc")
+"texture": SubResource("AtlasTexture_anrmw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vqkya")
+"texture": SubResource("AtlasTexture_701fu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xpukd")
+"texture": SubResource("AtlasTexture_u3nhg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s576y")
+"texture": SubResource("AtlasTexture_5wt0w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g7oxf")
+"texture": SubResource("AtlasTexture_km4cy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ws4gq")
+"texture": SubResource("AtlasTexture_hek7t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bs4gq")
->>>>>>> bebc177 (toto)
+"texture": SubResource("AtlasTexture_kv4p5")
 }],
 "loop": false,
 "name": &"vertical",
