@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var racine = preload("res://scenes/racine.tscn")
 
+var chance_division = 50
+
 func _ready():
 	init_tree()
 
