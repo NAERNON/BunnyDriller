@@ -58,3 +58,7 @@ func game_over() :
 func _on_delay_timeout():
 	if get_count_pousses() < 1: 
 		game_over()
+
+
+func _on_joueur_first_move_player():
+	$RootsEffect.play();

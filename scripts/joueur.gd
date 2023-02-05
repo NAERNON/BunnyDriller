@@ -2,10 +2,15 @@ extends Node2D
 
 signal fin_du_tour_joueur
 signal player_moved(position_y)
+signal first_move_player
 
 signal racine_coupee(pRacine)
 
+var very_first_move = true
+var first_move
 var moving = false
+var startDrill = false
+var drilling = false
 var input_buffer = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +20,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	deplacement()
+	if moving :
+		if startDrill :
+			$Drilling.play()
+			startDrill = false
+	else :
+		$Drilling.stop()
 
 func _input(event): 
 	#Récupération de l'input dans un buffer
@@ -32,6 +43,9 @@ func _input(event):
 
 func deplacement(): 
 	if not(input_buffer.is_empty()):
+		if very_first_move:
+			emit_signal("first_move_player")
+			very_first_move = false
 		var action = input_buffer[0]
 		if not(moving) and not(action==null) :
 			$Sprite.stop()
@@ -65,6 +79,10 @@ func deplacement():
 						deplacement.x =  Global.pixelLargeur 
 						if $RayCastDroite.is_colliding() and $RayCastDroite.get_collider().get_parent().is_in_group("Racine"):
 							emit_signal("racine_coupee",$RayCastDroite.get_collider().get_parent())
+			if deplacement != Vector2.ZERO:
+				if first_move :
+					startDrill = true
+					first_move = false
 			self.global_position += deplacement
 			emit_signal("player_moved",self.global_position.y)
 			moving = true
@@ -78,4 +96,5 @@ func _on_timer_timeout():
 func _on_sprite_animation_finished():
 	if $Sprite.animation == "Action" :
 		moving = false
+		first_move = true
 		$Sprite.play("Idle")

@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://5xohne7g4ol1"]
+[gd_scene load_steps=3 format=3 uid="uid://5xohne7g4ol1"]
 
 [ext_resource type="Script" path="res://scripts/arbre.gd" id="1_1pwtc"]
+[ext_resource type="AudioStream" uid="uid://dfm1gjxpsp501" path="res://wav/SoundEffect/GrowingRoots.wav" id="2_36ks5"]
 
 [node name="Arbre" type="Node2D"]
 script = ExtResource("1_1pwtc")
 
 [node name="Delay" type="Timer" parent="."]
+
+[node name="RootsEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_36ks5")
 
 [connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cdka245uypttb"]
+[gd_scene load_steps=25 format=3 uid="uid://baney52xjntxj"]
 
 [ext_resource type="Script" path="res://scripts/joueur.gd" id="1_o86ep"]
 [ext_resource type="Texture2D" uid="uid://ciwe5c5ijveuu" path="res://sprites/rabbit/rabbit_iddle.png" id="2_qidgi"]
 [ext_resource type="Texture2D" uid="uid://xsatcswd72b1" path="res://sprites/rabbit/rabbit_action.png" id="2_s4bk1"]
+[ext_resource type="AudioStream" uid="uid://o1boj2nwheut" path="res://wav/SoundEffect/StartDrill.wav" id="4_putbg"]
+[ext_resource type="AudioStream" uid="uid://cweic3lbl0uu8" path="res://wav/SoundEffect/Drilling.wav" id="5_equby"]
+[ext_resource type="AudioStream" uid="uid://dxom2m2b6c38c" path="res://wav/SoundEffect/StopDrill.wav" id="6_gowb4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5vnq"]
 atlas = ExtResource("2_s4bk1")
@@ -171,6 +174,15 @@ wait_time = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_n2pjp")
+
+[node name="StartDrill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_putbg")
+
+[node name="Drilling" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_equby")
+
+[node name="StopDrill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gowb4")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

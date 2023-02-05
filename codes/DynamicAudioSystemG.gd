@@ -130,10 +130,10 @@ func _ready():
 	startTime = 0.0
 	playNext = false
 
-	Play()
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	UpdateBPM()
+	print(currentBPM)
 	if isPlaying:
 		if playNext:
 			playNext = false
@@ -208,22 +208,25 @@ func _on_timer_swing_timeout():
 	if currentSwing < maximalSwing:
 		nextSwing = currentSwing+0.15
 
-func _on_timer_bpm_timeout():
+func UpdateBPM():
 	nextBPM = currentBPM
-	if currentBPM < maximalBPM :
-		nextBPM = currentBPM+1.0
+	nextBPM = min(maximalBPM, minimalBPM+(Global.mindureePousses - Global.dureePousses) * 100.0)
 
-	if currentBPM > 88 :
+	if currentBPM > 83 :
 		ActivateConga()
 
-	if currentBPM > 95 :
+	if currentBPM > 92 :
 		ActivateBongo()
 
-	if currentBPM > 102 :
+	if currentBPM > 98 :
 		ActivateBattery()
 
-	if currentBPM > 107  :
+	if currentBPM > 104  :
 		ActivateTom()
 
-	if currentBPM > 91 :
+	if currentBPM > 87 :
 		ActivateClaps()
+
+
+func _on_joueur_first_move_player():
+	Play();
