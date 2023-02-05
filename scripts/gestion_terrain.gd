@@ -1,13 +1,13 @@
 extends Node2D
 # sn = sous_niveau
-@export var hauteur_sn = 180
+@export var hauteur_sn = 270
 @export var largeur_sn = 480
 
 @onready var intro = preload("res://scenes/intro.tscn")
 
 var liste_sn = []
 var dernier_sn = 0 
-var nb_sn = 3
+var nb_sn = 4
 var compteur_sn=0
 
 
@@ -16,9 +16,9 @@ func _ready():
 	ajouter_intro()
 	load_sn() 
 	for i in 10 : 
-		var aleatoire = randi_range(1,3)
+		var aleatoire = randi_range(1,4)
 		while aleatoire == dernier_sn :
-			aleatoire = randi_range(1,3)
+			aleatoire = randi_range(1,4)
 		ajouter_sn(aleatoire)
 		
 

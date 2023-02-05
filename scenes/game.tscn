@@ -9,12 +9,14 @@
 [node name="Game" type="Node2D"]
 
 [node name="GestionTerrain" parent="." instance=ExtResource("3_d62qc")]
+position = Vector2(-238, -135)
 
 [node name="Arbre" parent="." instance=ExtResource("1_7p4jk")]
 position = Vector2(0, 96)
 
 [node name="Joueur" parent="." instance=ExtResource("2_007lu")]
-position = Vector2(0, 216)
+z_index = 5
+position = Vector2(48, 48)
 
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_6q5ov")]
 
