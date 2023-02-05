@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpmyjtn3n0vah"
-path="res://.godot/imported/scar_horizontal_right.png-cc9f28a4f30cb8d3ee8e5c4931b57896.ctex"
+uid="uid://bsigor84hreui"
+path="res://.godot/imported/game_over.png-51bb590aa7270f701e6393bfcf17e21a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/roots/scar_horizontal_right.png"
-dest_files=["res://.godot/imported/scar_horizontal_right.png-cc9f28a4f30cb8d3ee8e5c4931b57896.ctex"]
+source_file="res://sprites/gameover/game_over.png"
+dest_files=["res://.godot/imported/game_over.png-51bb590aa7270f701e6393bfcf17e21a.ctex"]
 
 [params]
 
