@@ -6,6 +6,10 @@ func _ready():
 	init_tree()
 
 
+enum type {
+	POUSSE, 
+	NEUTRE
+}
 
 func _process(delta):
 	pass
@@ -25,12 +29,19 @@ func init_tree():
 	
 	
 
-
-#func spawn_racine():
-#	var nouvelle_racine = racine.instantiate()
-#	var positions_de_la_prochaine_racine = $Serie.get_child(get_child_count() - 2).set_directions_possibles()
-#	nouvelle_racine.position = $Serie.get_child(get_child_count() - 2).position + set_racine_position(positions_de_la_prochaine_racine)
-
+func get_count_pousses():
+	var count = 0
+	for _i in self.get_children ():
+		if _i.is_in_group("Racine") and _i.type_racine == type.POUSSE :
+			count += 1
+	return count
 
 func _on_joueur_racine_coupee(pRacine):
 	pRacine.mort_recursive()
+	$Delay.start(2)
+
+
+
+func _on_delay_timeout():
+	if get_count_pousses() < 1: 
+		print("fin de jeu")

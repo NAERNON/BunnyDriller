@@ -1,7 +1,7 @@
 extends Node2D
 # sn = sous_niveau
-@export var hauteur_sn = 72
-@export var largeur_sn = 1148
+@export var hauteur_sn = 180
+@export var largeur_sn = 480
 var sn_test 
 var liste_sn = []
 var dernier_sn = 0 

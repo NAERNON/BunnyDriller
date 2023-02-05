@@ -108,17 +108,17 @@ func get_direction() :
 	var ray_droite = $RayCastDroite.is_colliding()
 	var ray_down = $RayCastBas.is_colliding()
 	var return_value = directions.SUD
-	var is_valid_return = false
 	set_directions_possibles()
 	
-	var direction_choisie = directions_possibles[randi_range(0,directions_possibles.size()-1)]
-	match direction_choisie :
-		"bas":
-			return directions.SUD 
-		"gauche":
-			return directions.OUEST 
-		"droite":
-			return directions.EST 
+	if directions_possibles.size() > 0:
+		var direction_choisie = directions_possibles[randi_range(0,directions_possibles.size()-1)]
+		match direction_choisie :
+			"bas":
+				return directions.SUD 
+			"gauche":
+				return directions.OUEST 
+			"droite":
+				return directions.EST 
 
 func remove_direction(pDirection):
 	match pDirection :
