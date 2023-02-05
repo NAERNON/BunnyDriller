@@ -1,0 +1,27 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://c7p0awfvi2q14"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_gdvpp"]
+resource_name = "Reverb"
+room_size = 0.65
+damping = 0.1
+spread = 0.3
+hipass = 0.2
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_bhsvm"]
+resource_name = "Reverb"
+room_size = 0.25
+damping = 0.1
+spread = 0.2
+wet = 0.2
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectReverb_gdvpp")
+bus/0/effect/0/enabled = true
+bus/1/name = &"Bongo"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_bhsvm")
+bus/1/effect/0/enabled = true
