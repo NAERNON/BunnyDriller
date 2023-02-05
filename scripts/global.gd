@@ -3,6 +3,7 @@ extends Node
 var pixelLargeur = 24 
 var pixelHauteur = 24
 
+var mindureePousses = 0.5
 var dureePousses = 0.5
 # Called when the node enters the scene tree for the first time.
 func _ready():

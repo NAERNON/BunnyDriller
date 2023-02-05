@@ -29,7 +29,7 @@
 
 [node name="DynamicAudioSystemG" type="Node" node_paths=PackedStringArray("clavesHigh", "clavesLow", "cowbell", "maracasLong", "maracasShort", "tambourine", "timbales", "congaOpenSlap", "congaCloseSlap", "congaLowTipTone", "congaHighFloating", "bongoHigh", "bongoLow", "woodBlockHigh", "woodBlockLow", "hitHatOpen", "hitHatFootClose", "kick", "snareCenter", "snareRimshot", "hiTom", "midTom", "lowTom", "claps1", "claps2")]
 script = ExtResource("1_bslnf")
-minimalBPM = 85
+minimalBPM = 80
 maximalBPM = 120
 maximalSwing = 0.5
 clavesHigh = NodePath("Claves/High")
@@ -162,7 +162,4 @@ volume_db = 10.0
 
 [node name="TimerSwing" type="Timer" parent="."]
 wait_time = 8.0
-autostart = true
-
-[node name="TimerBPM" type="Timer" parent="."]
 autostart = true

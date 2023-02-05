@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bocqim7ak4wkw"]
+[gd_scene load_steps=38 format=3 uid="uid://bocqim7ak4wkw"]
 
 [ext_resource type="Script" path="res://scripts/gameover.gd" id="1_umase"]
 [ext_resource type="Texture2D" uid="uid://bsigor84hreui" path="res://sprites/gameover/game_over.png" id="1_uuwta"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bkqmkemh2o5e" path="res://sprites/buttons/play_selected.png" id="4_tply0"]
 [ext_resource type="Texture2D" uid="uid://dl7gjn7aqkqhj" path="res://sprites/buttons/play_highlight.png" id="5_f1iti"]
 [ext_resource type="Texture2D" uid="uid://bdxuvtujctnvt" path="res://sprites/buttons/play_disabled.png" id="6_8ly6e"]
+[ext_resource type="AudioStream" uid="uid://yidheyjmmchi" path="res://wav/SoundEffect/Poison.wav" id="8_x46cw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjjb3"]
 atlas = ExtResource("1_uuwta")
@@ -247,5 +248,10 @@ texture_normal = ExtResource("3_151n0")
 texture_pressed = ExtResource("4_tply0")
 texture_hover = ExtResource("5_f1iti")
 texture_disabled = ExtResource("6_8ly6e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_x46cw")
+volume_db = -4.0
+autoplay = true
 
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_button_up"]
