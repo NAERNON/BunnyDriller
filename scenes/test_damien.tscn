@@ -16,9 +16,28 @@
 position = Vector2(72, 48)
 
 [node name="Obstacle" parent="." instance=ExtResource("2_554wv")]
-position = Vector2(120, 48)
+position = Vector2(36, -96)
 
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_8m0q4")]
+
+[node name="Obstacle6" parent="." instance=ExtResource("2_554wv")]
+position = Vector2(72, 0)
+
+[node name="Obstacle5" parent="." instance=ExtResource("2_554wv")]
+position = Vector2(48, 48)
+
+[node name="Obstacle2" parent="." groups=["Eau"] instance=ExtResource("2_554wv")]
+modulate = Color(0.733333, 0.980392, 0, 1)
+position = Vector2(0, 48)
+
+[node name="Obstacle7" parent="." instance=ExtResource("2_554wv")]
+position = Vector2(-72, 24)
+
+[node name="Obstacle3" parent="." instance=ExtResource("2_554wv")]
+position = Vector2(-48, 48)
+
+[node name="Obstacle4" parent="." instance=ExtResource("2_554wv")]
+position = Vector2(24, -24)
 
 [connection signal="player_moved" from="Joueur" to="CameraPrincipale" method="_on_joueur_player_moved"]
 [connection signal="racine_coupee" from="Joueur" to="Arbre" method="_on_joueur_racine_coupee"]
