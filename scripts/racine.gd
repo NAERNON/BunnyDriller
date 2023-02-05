@@ -79,6 +79,7 @@ func nouvelle_pousse():
 			get_parent().add_child(nouvelle_racine)
 			var chance = randi_range(0,get_parent().chance_division)
 			if chance == 0 :
+				get_parent().chance_division = get_parent().chance_division*4
 				var doublon_racine = racine_instances.instantiate()
 				doublon_racine.orientation_parent = self.orientation_self
 				doublon_racine.coordonees_parent = self.coordonees
@@ -88,7 +89,8 @@ func nouvelle_pousse():
 				nouvelle_racine.parent = self
 				liste_enfants.push_back(doublon_racine)
 				get_parent().add_child(doublon_racine)
-	
+	if Global.dureePousses > 0:
+		Global.dureePousses -= 0.001
 	type_racine = type.NEUTRE
 
 func get_direction_vecteur(pOrientation): 
@@ -138,18 +140,27 @@ func set_directions_possibles():
 		if $RayCastBas.get_collider().get_parent().is_in_group("Eau") :
 			directions_possibles = ["bas"]
 			get_parent().contact_eau()
+		elif $RayCastBas.get_collider().get_parent().is_in_group("Toxic") :
+			directions_possibles = ["bas"]
+			get_parent().contact_toxic()
 		else :
 			directions_possibles.erase("bas")
 	if $RayCastGauche.is_colliding():
 		if $RayCastGauche.get_collider().get_parent().is_in_group("Eau") :
 			directions_possibles = ["gauche"]
 			get_parent().contact_eau()
+		elif $RayCastGauche.get_collider().get_parent().is_in_group("Toxic") :
+			directions_possibles = ["gauche"]
+			get_parent().contact_toxic()
 		else :
 			directions_possibles.erase("gauche")
 	if $RayCastDroite.is_colliding():
 		if $RayCastDroite.get_collider().get_parent().is_in_group("Eau") :
 			directions_possibles = ["droite"]
 			get_parent().contact_eau()
+		elif $RayCastDroite.get_collider().get_parent().is_in_group("Toxic") :
+			directions_possibles = ["droite"]
+			get_parent().contact_toxic()
 		else :
 			directions_possibles.erase("droite")
 	if orientation_self == directions.EST:
@@ -175,6 +186,17 @@ func _on_timer_for_raycasts_timeout():
 func _on_duree_vie_timeout():
 	nouvelle_pousse()
 
+func child_died():
+	joue_died()
+
+func joue_died() :
+	match orientation_self :
+		directions.SUD :
+			$Sprite.play("scar_vertical")
+		directions.OUEST :
+			$Sprite.play("scar_horizontal_left")
+		directions.EST :
+			$Sprite.play("scar_horizontal_right")
 
 
 func _on_delay_raycast_timeout():

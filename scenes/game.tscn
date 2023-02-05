@@ -11,10 +11,10 @@
 position = Vector2(-238, -135)
 
 [node name="Arbre" parent="." instance=ExtResource("1_7p4jk")]
+position = Vector2(0, 96)
 
 [node name="Joueur" parent="." instance=ExtResource("2_007lu")]
-z_index = 5
-position = Vector2(48, 48)
+position = Vector2(0, 216)
 
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_6q5ov")]
 
