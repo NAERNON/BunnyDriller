@@ -4,5 +4,3 @@
 
 [node name="GestionTerrain" type="Node2D"]
 script = ExtResource("1_85bwp")
-hauteur_sn = 180
-largeur_sn = 480
