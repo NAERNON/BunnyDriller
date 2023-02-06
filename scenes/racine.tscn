@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/racine.gd" id="1_qrjbc"]
 [ext_resource type="PackedScene" uid="uid://dlbpu6jis7efv" path="res://scenes/sprite_racine.tscn" id="2_vrm4m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1q0ne"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkdi1"]
 
 [node name="Racine" type="Node2D" groups=["Racine"]]
 z_index = 10
@@ -15,7 +15,7 @@ script = ExtResource("1_qrjbc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(2.52295e-06, -2.52295e-06)
-shape = SubResource("RectangleShape2D_1q0ne")
+shape = SubResource("RectangleShape2D_xkdi1")
 
 [node name="RayCastHaut" type="RayCast2D" parent="."]
 target_position = Vector2(0, -24)

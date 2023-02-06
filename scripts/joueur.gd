@@ -17,6 +17,7 @@ func _ready():
 	$Sprite.play("Idle")
 	$Timer.start()
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	deplacement()
