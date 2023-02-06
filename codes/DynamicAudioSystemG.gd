@@ -133,7 +133,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	UpdateBPM()
-	print(currentBPM)
 	if isPlaying:
 		if playNext:
 			playNext = false
