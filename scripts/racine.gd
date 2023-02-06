@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var racine_instances = preload("res://scenes/racine.tscn")
 
-
 enum directions {
 	NORD,
 	EST,
@@ -15,15 +14,11 @@ enum type {
 	NEUTRE
 }
 
-# Plus chance division est haute moins il y a de chance d'un nouveau croisement
-
-
 var orientation_parent = directions.SUD
 var orientation_self = directions.SUD
 var orientation_enfant = directions.SUD
 
 var parent = null
-
 var liste_enfants = []
 var coordonees_parent = Vector2.ZERO
 var coordonees = Vector2.ZERO
@@ -31,14 +26,10 @@ var type_racine = type.POUSSE
 
 var directions_possibles = ["bas", "gauche", "droite"]
 
-var est_pousse = true
 
 func _ready():
 	$Area2D/CollisionShape2D.disabled = true
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
+
 
 func joue_anim_pousse() :
 	match orientation_self :
@@ -135,7 +126,6 @@ func remove_direction(pDirection):
 			directions_possibles.erase("gauche")
 	
 func set_directions_possibles():
-#	if est_pousse:s
 	if $RayCastBas.is_colliding():
 		if $RayCastBas.get_collider().get_parent().is_in_group("Eau") :
 			directions_possibles = ["bas"]
@@ -204,9 +194,17 @@ func _on_delay_raycast_timeout():
 	if( parent != null):
 		parent.orientation_enfant = orientation_self
 		parent.joue_anim_neutre()
-	#print("Nouvelle branche "+str(orientation_parent)+" - "+ str(orientation_enfant))
 	coordonees = coordonees_parent + get_direction_vecteur(orientation_self)
 	self.global_position = Vector2(coordonees.x * Global.pixelHauteur + get_parent().global_position.x,coordonees.y * Global.pixelLargeur + get_parent().global_position.y)
-	$DureeVie.start(Global.dureePousses)
-	$Area2D/CollisionShape2D.disabled = false
 	joue_anim_pousse()
+
+
+func _on_sprite_animation_finished():
+	if type_racine == type.POUSSE :
+		$Area2D/CollisionShape2D.disabled = false
+		$DureeVie.start(Global.dureePousses)
+	else : 
+		$RayCastBas.queue_free()
+		$RayCastDroite.queue_free()
+		$RayCastGauche.queue_free()
+		$RayCastHaut.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ln5gq8fuiw"]
+[gd_scene load_steps=60 format=3 uid="uid://ln5gq8fuiw"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_56lvo"]
 [ext_resource type="Texture2D" uid="uid://cfl0teoyh5k33" path="res://sprites/title_screen/scene_back.png" id="2_f7jsk"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bkqmkemh2o5e" path="res://sprites/buttons/play_selected.png" id="9_nd76s"]
 [ext_resource type="Texture2D" uid="uid://dl7gjn7aqkqhj" path="res://sprites/buttons/play_highlight.png" id="10_14qjv"]
 [ext_resource type="Texture2D" uid="uid://bdxuvtujctnvt" path="res://sprites/buttons/play_disabled.png" id="11_g6qt8"]
+[ext_resource type="Texture2D" uid="uid://ciwe5c5ijveuu" path="res://sprites/rabbit/rabbit_iddle.png" id="13_uhvf7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cyao0"]
 atlas = ExtResource("3_jf6dv")
@@ -271,6 +272,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_7omgo"]
 resource_name = "soundscape_fadeout"
@@ -287,12 +300,88 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, -80.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4, 7.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fqwmf"]
 _data = {
 "RESET": SubResource("Animation_10uuy"),
 "soundscape_fadeout": SubResource("Animation_7omgo")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcito"]
+atlas = ExtResource("13_uhvf7")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m42vt"]
+atlas = ExtResource("13_uhvf7")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk7j5"]
+atlas = ExtResource("13_uhvf7")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwo8u"]
+atlas = ExtResource("13_uhvf7")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbjyp"]
+atlas = ExtResource("13_uhvf7")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61c0w"]
+atlas = ExtResource("13_uhvf7")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2u0q"]
+atlas = ExtResource("13_uhvf7")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnmxq"]
+atlas = ExtResource("13_uhvf7")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hhso1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcito")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m42vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk7j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwo8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbjyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61c0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2u0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnmxq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="title_screen" type="Node2D"]
 texture_filter = 1
@@ -339,6 +428,13 @@ texture_disabled = ExtResource("11_g6qt8")
 libraries = {
 "": SubResource("AnimationLibrary_fqwmf")
 }
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(0.709804, 0.545098, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(225, 120)
+sprite_frames = SubResource("SpriteFrames_hhso1")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_soundscape_fadeout_finished"]
