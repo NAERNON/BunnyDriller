@@ -6,6 +6,7 @@ var start_character_delay = false
 func _ready():
 	$light_back.play()
 	$light_front.play()
+	$AnimatedSprite2D.play("default")
 
 func _process(_delta):
 	if start_character_delay:
@@ -21,9 +22,10 @@ func _on_play_button_pressed():
 	$PlayButton.disabled = true
 	$StartSound.play()
 	start_character_delay = true
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+
 
 
 func _on_soundscape_fadeout_finished(anim_name):
 	$Soundscape.stop()
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
 

@@ -141,6 +141,7 @@ animations = [{
 size = Vector2(24, 24)
 
 [node name="Joueur" type="Node2D"]
+z_index = 10
 script = ExtResource("1_o86ep")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

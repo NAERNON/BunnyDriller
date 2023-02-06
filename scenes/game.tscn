@@ -2,19 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://5xohne7g4ol1" path="res://scenes/arbre.tscn" id="1_7p4jk"]
 [ext_resource type="PackedScene" uid="uid://baney52xjntxj" path="res://scenes/joueur.tscn" id="2_007lu"]
-[ext_resource type="PackedScene" path="res://scenes/camera_principale.tscn" id="3_6q5ov"]
-[ext_resource type="PackedScene" path="res://scenes/gestion_terrain.tscn" id="3_d62qc"]
+[ext_resource type="PackedScene" uid="uid://cg6hqijmuvkr6" path="res://scenes/camera_principale.tscn" id="3_6q5ov"]
+[ext_resource type="PackedScene" uid="uid://duhbv21sc36u5" path="res://scenes/gestion_terrain.tscn" id="3_d62qc"]
 [ext_resource type="PackedScene" uid="uid://ba0fvfua86x36" path="res://scenes/DynamicAudioSystemG.tscn" id="5_dyh14"]
 
 [node name="Game" type="Node2D"]
 
 [node name="GestionTerrain" parent="." instance=ExtResource("3_d62qc")]
+z_as_relative = false
 
 [node name="Arbre" parent="." instance=ExtResource("1_7p4jk")]
-position = Vector2(0, 96)
+position = Vector2(-12, 220)
 
 [node name="Joueur" parent="." instance=ExtResource("2_007lu")]
-position = Vector2(0, 216)
+z_index = 5
+position = Vector2(-15, 350)
 
 [node name="CameraPrincipale" parent="." instance=ExtResource("3_6q5ov")]
 

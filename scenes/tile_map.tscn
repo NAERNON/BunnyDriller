@@ -1,0 +1,120 @@
+[gd_scene load_steps=24 format=3 uid="uid://cu8rxhc74d8mi"]
+
+[ext_resource type="Texture2D" uid="uid://dgfr4dto1qhgd" path="res://sprites/background/background.png" id="1_7q4uw"]
+[ext_resource type="Texture2D" uid="uid://clgg3hoj6euv5" path="res://sprites/border/top_left.png" id="2_b44gy"]
+[ext_resource type="Texture2D" uid="uid://derxxxiqvglfc" path="res://sprites/border/bottom_left.png" id="2_i4kcv"]
+[ext_resource type="Texture2D" uid="uid://bf6jcek2xuicu" path="res://sprites/border/top_right.png" id="3_fu5cq"]
+[ext_resource type="Texture2D" uid="uid://cuop7ag70mbyw" path="res://sprites/elements/water.png" id="4_hydno"]
+[ext_resource type="Texture2D" uid="uid://1on0t6f0eoby" path="res://sprites/elements/poison.png" id="5_bt36n"]
+[ext_resource type="Texture2D" uid="uid://bgld4alqnlkqq" path="res://sprites/border/bottom.png" id="5_vad1n"]
+[ext_resource type="Texture2D" uid="uid://dapf2cauoe1pp" path="res://sprites/border/bottom_right.png" id="7_6cjp8"]
+[ext_resource type="Texture2D" uid="uid://bcc1k2nprm2vl" path="res://sprites/border/left.png" id="8_fpops"]
+[ext_resource type="Texture2D" uid="uid://8we7va5f36so" path="res://sprites/border/right.png" id="9_hjrc0"]
+[ext_resource type="Texture2D" uid="uid://bettf0lv3ebjg" path="res://sprites/border/top.png" id="10_wlmga"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2qkuk"]
+texture = ExtResource("1_7q4uw")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_elsqm"]
+texture = ExtResource("2_b44gy")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ea0hu"]
+texture = ExtResource("3_fu5cq")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7e5rw"]
+texture = ExtResource("4_hydno")
+texture_region_size = Vector2i(24, 24)
+0:0/animation_columns = 8
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/animation_frame_3/duration = 0.2
+0:0/animation_frame_4/duration = 0.2
+0:0/animation_frame_5/duration = 0.2
+0:0/animation_frame_6/duration = 0.2
+0:0/animation_frame_7/duration = 0.2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jypeb"]
+texture = ExtResource("5_bt36n")
+texture_region_size = Vector2i(24, 24)
+0:0/animation_columns = 16
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/animation_frame_3/duration = 0.2
+0:0/animation_frame_4/duration = 0.2
+0:0/animation_frame_5/duration = 0.2
+0:0/animation_frame_6/duration = 0.2
+0:0/animation_frame_7/duration = 0.2
+0:0/animation_frame_8/duration = 0.2
+0:0/animation_frame_9/duration = 0.2
+0:0/animation_frame_10/duration = 0.2
+0:0/animation_frame_11/duration = 0.2
+0:0/animation_frame_12/duration = 0.2
+0:0/animation_frame_13/duration = 0.2
+0:0/animation_frame_14/duration = 0.2
+0:0/animation_frame_15/duration = 0.2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ol374"]
+texture = ExtResource("5_vad1n")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hi8rr"]
+texture = ExtResource("2_i4kcv")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_72dvl"]
+texture = ExtResource("7_6cjp8")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gj6n2"]
+texture = ExtResource("8_fpops")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cmmv0"]
+texture = ExtResource("9_hjrc0")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hcc1j"]
+texture = ExtResource("10_wlmga")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sllpb"]
+tile_size = Vector2i(24, 24)
+sources/1 = SubResource("TileSetAtlasSource_2qkuk")
+sources/3 = SubResource("TileSetAtlasSource_hi8rr")
+sources/2 = SubResource("TileSetAtlasSource_ol374")
+sources/5 = SubResource("TileSetAtlasSource_72dvl")
+sources/6 = SubResource("TileSetAtlasSource_gj6n2")
+sources/7 = SubResource("TileSetAtlasSource_cmmv0")
+sources/8 = SubResource("TileSetAtlasSource_hcc1j")
+sources/11 = SubResource("TileSetAtlasSource_elsqm")
+sources/12 = SubResource("TileSetAtlasSource_ea0hu")
+sources/16 = SubResource("TileSetAtlasSource_7e5rw")
+sources/17 = SubResource("TileSetAtlasSource_jypeb")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_sllpb")
+format = 2
+layer_0/name = "background"
+layer_1/name = "terrain"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
