@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var racine_instances = preload("res://scenes/racine.tscn")
-
+@onready var sprite_racine = preload("res://scenes/sprite_racine.tscn")
 enum directions {
 	NORD,
 	EST,
@@ -25,7 +25,7 @@ var coordonees = Vector2.ZERO
 var type_racine = type.POUSSE
 
 var directions_possibles = ["bas", "gauche", "droite"]
-
+var is_dup = false
 
 func _ready():
 	$Area2D/CollisionShape2D.disabled = true
@@ -59,6 +59,29 @@ func joue_anim_neutre() :
 		elif orientation_self == directions.EST and orientation_enfant == directions.SUD :
 			$Sprite.play("corner_right_down")
 
+func dupp_sprite() :
+	var sprite_instance = sprite_racine.instantiate()
+	add_child(sprite_instance)
+	orientation_enfant = liste_enfants[0].orientation_self
+	if orientation_enfant == orientation_self :
+		match orientation_enfant :
+			directions.SUD :
+				sprite_instance.play("vertical")
+			directions.OUEST :
+				sprite_instance.play("horizontal_left")
+			directions.EST :
+				sprite_instance.play("horizontal_right")
+	else : 
+		if orientation_self == directions.SUD and orientation_enfant == directions.OUEST:
+			sprite_instance.play("corner_down_left")
+		elif orientation_self == directions.SUD and orientation_enfant == directions.EST :
+			sprite_instance.play("corner_down_right")
+		elif orientation_self == directions.OUEST and orientation_enfant == directions.SUD:
+			sprite_instance.play("corner_left_down")
+		elif orientation_self == directions.EST and orientation_enfant == directions.SUD :
+			sprite_instance.play("corner_right_down")
+
+
 func nouvelle_pousse():
 	if type_racine == type.POUSSE :
 		var nouvelle_racine = racine_instances.instantiate()
@@ -74,14 +97,15 @@ func nouvelle_pousse():
 				var doublon_racine = racine_instances.instantiate()
 				doublon_racine.orientation_parent = self.orientation_self
 				doublon_racine.coordonees_parent = self.coordonees
+				doublon_racine.is_dup = true
 				#remove_direction(nouvelle_racine.orientation_self)
 				#doublon_racine.orientation_self = get_direction()
 				#doublon_racine.coordonees = self.coordonees + get_direction_vecteur(self.orientation_self)
-				nouvelle_racine.parent = self
+				doublon_racine.parent = self
 				liste_enfants.push_back(doublon_racine)
 				get_parent().add_child(doublon_racine)
 	if Global.dureePousses > 0:
-		Global.dureePousses -= 0.001
+		Global.dureePousses -= 0.01
 	type_racine = type.NEUTRE
 
 func get_direction_vecteur(pOrientation): 
@@ -98,9 +122,6 @@ func get_direction_vecteur(pOrientation):
 	
 
 func get_direction() : 
-	var ray_gauche = $RayCastGauche.is_colliding()
-	var ray_droite = $RayCastDroite.is_colliding()
-	var ray_down = $RayCastBas.is_colliding()
 	var return_value = directions.SUD
 	if parent != null :
 		parent.set_directions_possibles()
@@ -157,7 +178,6 @@ func set_directions_possibles():
 		directions_possibles.erase("gauche")
 	if orientation_self == directions.OUEST:
 		directions_possibles.erase("droite")
-	#		print(str(self), directions_possibles)
 	return directions_possibles
 
 func mort_recursive():
@@ -194,9 +214,13 @@ func _on_delay_raycast_timeout():
 	if( parent != null):
 		parent.orientation_enfant = orientation_self
 		parent.joue_anim_neutre()
+		if is_dup :
+			parent.dupp_sprite()
 	coordonees = coordonees_parent + get_direction_vecteur(orientation_self)
 	self.global_position = Vector2(coordonees.x * Global.pixelHauteur + get_parent().global_position.x,coordonees.y * Global.pixelLargeur + get_parent().global_position.y)
 	joue_anim_pousse()
+
+
 
 
 func _on_sprite_animation_finished():

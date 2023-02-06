@@ -4,7 +4,7 @@ extends Node2D
 
 
 var chance_division = 10
-var spawn_speed = 5
+var spawn_speed = 2
 
 func _ready():
 	get_parent().get_node("CameraPrincipale").enabled = true
@@ -49,6 +49,7 @@ func _on_joueur_racine_coupee(pRacine):
 
 func contact_eau(): 
 	self.chance_division = 10
+	Global.dureePousses += 0.1
 
 func contact_toxic(): 
 	game_over()
